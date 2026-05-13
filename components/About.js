@@ -11,27 +11,28 @@ export default function About() {
           <span className="text-label mb-8 block">About</span>
         </Reveal>
 
-        {/* Heading */}
+        {/* Heading — gradient highlight on key word */}
         <Reveal delay={0.1}>
           <h2 className="text-display mb-8">
-            I enjoy building things that combine{' '}
-            <span className="text-[var(--color-text-secondary)]">
+            I enjoy building things that{' '}
+            <span className="gradient-text">combine</span>{' '}
+            <span className="text-[var(--color-text-muted)]" style={{ fontStyle: 'italic' }}>
               technology, systems, and experience.
             </span>
           </h2>
         </Reveal>
 
         {/* Body text */}
-        <div className="flex flex-col gap-6 mb-14 max-w-[640px]">
+        <div className="flex flex-col gap-6 mb-16 max-w-[640px]">
           <Reveal delay={0.2}>
-            <p className="text-body leading-relaxed">
+            <p className="text-body leading-[1.7]">
               From full-stack applications to AI-driven projects and immersive interfaces,
               I like exploring ideas by turning them into real products.
             </p>
           </Reveal>
 
           <Reveal delay={0.3}>
-            <p className="text-body leading-relaxed">
+            <p className="text-body leading-[1.7]">
               Most of what I learn comes through building —
               experimenting with projects, participating in hackathons,
               and collaborating with people around me through communities and events.
@@ -39,24 +40,26 @@ export default function About() {
           </Reveal>
         </div>
 
-        {/* Highlight row */}
-        <Reveal delay={0.4}>
-          <div className="card-featured flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-0">
-            {[
-              { label: 'Focus', value: 'AI & Systems' },
-              { label: 'Approach', value: 'Build to Learn' },
-              { label: 'Interest', value: 'Experiences' },
-            ].map((item, i) => (
-              <div key={item.label} className="flex-1 flex flex-col gap-1 px-0 md:px-6 first:md:pl-0 last:md:pr-0">
-                <span className="text-label">{item.label}</span>
-                <span className="text-[18px] font-semibold text-[var(--color-deep-ink)]">{item.value}</span>
-                {i < 2 && (
-                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-8 bg-[var(--color-border)]" />
-                )}
+        {/* Highlight row — accent cards with left border */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { label: 'Focus', value: 'AI & Systems', color: 'var(--color-primary)' },
+            { label: 'Approach', value: 'Build to Learn', color: 'var(--color-warm)' },
+            { label: 'Interest', value: 'Experiences', color: 'var(--color-sage)' },
+          ].map((item, i) => (
+            <Reveal key={item.label} delay={0.4 + i * 0.1}>
+              <div
+                className="accent-card"
+                style={{ borderLeftColor: item.color }}
+              >
+                <span className="text-label block mb-2">{item.label}</span>
+                <span className="text-[18px] font-semibold text-[var(--color-deep-ink)]">
+                  {item.value}
+                </span>
               </div>
-            ))}
-          </div>
-        </Reveal>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   )
