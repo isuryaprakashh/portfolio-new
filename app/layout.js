@@ -22,12 +22,10 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-[var(--color-page-bg)] text-[var(--color-black)]" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <SmoothScrollProvider>
-          <div className="app-frame">
-            <Navbar />
-            {children}
-          </div>
+          <Navbar />
+          {children}
         </SmoothScrollProvider>
       </body>
     </html>

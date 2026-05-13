@@ -10,24 +10,23 @@ export default function Home() {
     <main>
       <Hero />
 
-      {/* Cinematic divider */}
-      <div className="w-full max-w-[1280px] mx-auto h-px bg-[var(--color-border-gray)]" />
+      <div className="section-divider" />
 
       <About />
 
-      <div className="w-full max-w-[1280px] mx-auto h-px bg-[var(--color-border-gray)]" />
+      <div className="section-divider" />
 
       <Projects />
 
-      <div className="w-full max-w-[1280px] mx-auto h-px bg-[var(--color-border-gray)]" />
+      <div className="section-divider" />
 
       <Research />
 
-      <div className="w-full max-w-[1280px] mx-auto h-px bg-[var(--color-border-gray)]" />
+      <div className="section-divider" />
 
       <BeyondCode />
 
-      <div className="w-full max-w-[1280px] mx-auto h-px bg-[var(--color-border-gray)]" />
+      <div className="section-divider" />
 
       <Footer />
     </main>

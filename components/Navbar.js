@@ -5,18 +5,21 @@ import Link from 'next/link'
 export default function Navbar() {
   return (
     <motion.nav
-      className="py-6 px-10 flex items-center justify-between"
-      initial={{ opacity: 0, y: -20 }}
+      className="py-5 px-10 flex items-center justify-between max-w-[1200px] mx-auto"
+      initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.6 }}
     >
       {/* Logo */}
-      <Link href="/" className="w-10 h-10 rounded-full border border-black flex items-center justify-center font-bold text-lg hover:bg-black hover:text-white transition-all">
+      <Link
+        href="/"
+        className="w-10 h-10 rounded-full border border-[var(--color-deep-ink)] flex items-center justify-center font-semibold text-sm text-[var(--color-deep-ink)] hover:bg-[var(--color-deep-ink)] hover:text-white transition-all duration-200"
+      >
         SP
       </Link>
 
       {/* Nav Links */}
-      <div className="hidden md:flex items-center gap-10">
+      <div className="hidden md:flex items-center gap-8">
         {[
           { href: '#about', label: 'About' },
           { href: '#projects', label: 'Work' },
@@ -26,7 +29,7 @@ export default function Navbar() {
           <Link
             key={item.label}
             href={item.href}
-            className="text-[14px] font-medium text-black hover:opacity-60 transition-opacity"
+            className="text-[12px] font-normal text-[var(--color-deep-ink)] hover:text-[var(--color-text-secondary)] transition-colors duration-200"
           >
             {item.label}
           </Link>
@@ -34,9 +37,12 @@ export default function Navbar() {
       </div>
 
       {/* Action Button */}
-      <button className="px-6 py-2.5 bg-black text-white text-[14px] font-semibold rounded-full shadow-button hover:bg-gray-800 transition-all">
+      <Link
+        href="#contact"
+        className="btn-primary px-5 h-10 text-[12px] rounded-full"
+      >
         Contact Me
-      </button>
+      </Link>
     </motion.nav>
   )
 }

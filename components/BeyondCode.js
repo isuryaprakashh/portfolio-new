@@ -31,28 +31,23 @@ export default function BeyondCode() {
     <section id="beyond" className="section-spacing">
       <div className="container-main">
         <Reveal>
-          <div className="flex items-center gap-3 mb-10">
-            <span className="inline-block w-6 h-px bg-[var(--color-border)]" />
-            <span className="text-[12px] tracking-[0.12em] uppercase text-[var(--color-muted)]">
-              Beyond Code
-            </span>
-          </div>
+          <span className="text-label mb-8 block">Beyond Code</span>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h2 className="text-display text-black mb-4">
+          <h2 className="text-display mb-4">
             Beyond Code
           </h2>
         </Reveal>
 
         <Reveal delay={0.15}>
-          <p className="text-[1.35rem] font-light text-[var(--color-muted)] leading-relaxed mb-4">
-            Some of the best ideas<br />come from building with people.
+          <p className="text-body font-light leading-relaxed mb-4 max-w-[480px]">
+            Some of the best ideas come from building with people.
           </p>
         </Reveal>
 
         <Reveal delay={0.2}>
-          <p className="text-[14px] text-[var(--color-muted)] font-light leading-relaxed max-w-[500px] mb-12 md:mb-16">
+          <p className="text-[14px] text-[var(--color-text-secondary)] font-light leading-relaxed max-w-[480px] mb-12">
             Hackathons, student communities, and collaborative projects
             have become a big part of how I learn and build.
           </p>
@@ -63,16 +58,16 @@ export default function BeyondCode() {
           {activities.map((activity) => (
             <motion.div
               key={activity.title}
-              className="p-10 floating-card cursor-default group"
+              className="floating-card p-8 cursor-default group"
               variants={staggerChild}
             >
-              <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-2xl text-black mb-8 border border-gray-100 group-hover:bg-[var(--color-brand-accent)] group-hover:border-[var(--color-brand-accent)] transition-all duration-300">
+              <div className="w-10 h-10 rounded-[8px] bg-[var(--color-card-bg-alt)] flex items-center justify-center text-xl text-[var(--color-deep-ink)] mb-6 border border-[var(--color-border)] group-hover:bg-[var(--color-primary)] group-hover:text-white group-hover:border-[var(--color-primary)] transition-all duration-200">
                 {activity.icon}
               </div>
-              <h3 className="text-xl font-extrabold text-black mb-3 tracking-tight">
+              <h3 className="text-[18px] font-semibold text-[var(--color-deep-ink)] mb-2 tracking-tight">
                 {activity.title}
               </h3>
-              <p className="text-body text-gray-500 font-normal leading-relaxed">
+              <p className="text-body leading-relaxed">
                 {activity.description}
               </p>
             </motion.div>
