@@ -58,14 +58,14 @@ export default function BeyondCode() {
         </Reveal>
 
         {/* Activity grid — varied sizes */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-4" staggerDelay={0.1}>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5" staggerDelay={0.1}>
           {activities.map((activity) => (
             <motion.div
               key={activity.title}
               className={`floating-card p-8 group ${activity.wide ? 'md:col-span-2' : 'md:col-span-1'}`}
               variants={staggerChild}
             >
-              <div className="w-10 h-10 rounded-[10px] bg-[var(--color-card-bg-alt)] flex items-center justify-center text-lg text-[var(--color-deep-ink)] mb-6 border border-[var(--color-border)] group-hover:bg-[var(--color-primary)] group-hover:text-white group-hover:border-[var(--color-primary)] transition-all duration-300">
+              <div className="w-10 h-10 rounded-[12px] bg-[var(--color-card-bg-alt)] flex items-center justify-center text-lg text-[var(--color-deep-ink)] mb-6 border border-[var(--color-border)] group-hover:bg-[var(--color-primary)] group-hover:text-white group-hover:border-[var(--color-primary)] transition-all duration-300">
                 {activity.icon}
               </div>
               <h3 className="text-[17px] font-semibold text-[var(--color-deep-ink)] mb-2 tracking-tight">

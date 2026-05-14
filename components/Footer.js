@@ -29,7 +29,7 @@ export default function Footer() {
           </p>
         </Reveal>
 
-        {/* CTA — pulse animation */}
+        {/* CTA — gradient button with sparkle */}
         <Reveal delay={0.3}>
           <motion.a
             href="mailto:hello@suryaprakash.dev"
@@ -37,8 +37,9 @@ export default function Footer() {
             whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
+            <span>✦</span>
             <span>Let's Build Something</span>
-            <span className="text-lg">→</span>
+            <span>→</span>
           </motion.a>
         </Reveal>
 

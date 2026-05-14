@@ -41,11 +41,11 @@ export default function About() {
         </div>
 
         {/* Highlight row — accent cards with left border */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
-            { label: 'Focus', value: 'AI & Systems', color: 'var(--color-primary)' },
-            { label: 'Approach', value: 'Build to Learn', color: 'var(--color-warm)' },
-            { label: 'Interest', value: 'Experiences', color: 'var(--color-sage)' },
+            { label: 'Focus', value: 'AI & Systems', color: 'var(--color-primary)', icon: '⚡' },
+            { label: 'Approach', value: 'Build to Learn', color: 'var(--color-warm)', icon: '🔧' },
+            { label: 'Interest', value: 'Experiences', color: 'var(--color-sage)', icon: '✦' },
           ].map((item, i) => (
             <Reveal key={item.label} delay={0.4 + i * 0.1}>
               <div

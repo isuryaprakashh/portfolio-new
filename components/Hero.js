@@ -39,17 +39,18 @@ export default function Hero() {
 
   return (
     <section className="flex flex-col items-center pt-28 pb-16 px-10 text-center max-w-[1200px] mx-auto min-h-[90vh] justify-center">
-      {/* Badge */}
+      {/* Badge — pill style with gradient indicator */}
       <motion.div
-        className="inline-flex items-center gap-2.5 px-4 py-2 bg-[var(--color-card-bg)] rounded-full text-[12px] font-normal text-[var(--color-deep-ink)] mb-10 border border-[var(--color-border)]"
+        className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-[var(--color-card-bg)] rounded-full text-[12px] font-normal text-[var(--color-deep-ink)] mb-10 border border-[var(--color-border)] shadow-sm"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="bg-[var(--color-deep-ink)] text-white text-[10px] px-2 py-0.5 rounded-full font-medium">
-          SP
-        </span>
+        <span className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse" />
         <span className="text-[var(--color-text-secondary)]">
+          Currently building →
+        </span>
+        <span className="font-medium text-[var(--color-deep-ink)]">
           {displayText}
           <motion.span
             className="inline-block w-[2px] h-[14px] bg-[var(--color-primary)] ml-0.5 align-middle"
@@ -57,7 +58,6 @@ export default function Hero() {
             transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
           />
         </span>
-        <span className="text-[var(--color-text-muted)]">Based in India →</span>
       </motion.div>
 
       {/* Heading — stagger reveal each word */}
@@ -90,9 +90,9 @@ export default function Hero() {
         through building and experimentation.
       </motion.p>
 
-      {/* Features list */}
+      {/* Features list — pill badges */}
       <motion.div
-        className="flex flex-wrap justify-center gap-6 mb-12 text-[14px] font-normal text-[var(--color-text-secondary)]"
+        className="flex flex-wrap justify-center gap-3 mb-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.65 }}
@@ -100,10 +100,10 @@ export default function Hero() {
         {['AI & Systems', 'Digital Interfaces', 'Intelligent Apps'].map((feat, i) => (
           <motion.div
             key={feat}
-            className="flex items-center gap-2"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 + i * 0.1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-card-bg)] border border-[var(--color-border)] text-[13px] text-[var(--color-text-secondary)] shadow-sm"
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7 + i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)]" />
             {feat}

@@ -28,12 +28,12 @@ export default function Research() {
             {/* Accent Bar */}
             <div className="w-[3px] min-h-full bg-[var(--color-primary)] shrink-0 rounded-full group-hover:bg-[var(--color-brand-accent)] transition-colors duration-300" />
             <div className="flex-1">
-              {/* Venue badge — prominent */}
+              {/* Venue badge — prominent pill badges */}
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-[11px] font-medium px-3 py-1 rounded-full bg-[var(--color-primary)] text-white tracking-wider uppercase">
+                <span className="text-[11px] font-medium px-3.5 py-1.5 rounded-full bg-[var(--color-primary)] text-white tracking-wider uppercase">
                   INDIACOM 2026
                 </span>
-                <span className="text-[11px] font-normal px-3 py-1 rounded-full bg-[var(--color-card-bg-alt)] text-[var(--color-text-secondary)] border border-[var(--color-border)] tracking-wider uppercase">
+                <span className="text-[11px] font-medium px-3.5 py-1.5 rounded-full bg-[var(--color-card-bg-alt)] text-[var(--color-text-secondary)] border border-[var(--color-border)] tracking-wider uppercase">
                   Published
                 </span>
               </div>
