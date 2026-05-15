@@ -113,7 +113,7 @@ export default function Contact() {
                 <input
                   id="contact-name"
                   name="name"
-                  placeholder="John Doe"
+                  placeholder="Surya Prakash"
                   value={formData.name}
                   onChange={handleChange}
                   className={`contact-input ${errors.name ? 'contact-input-error' : ''}`}
@@ -131,7 +131,7 @@ export default function Contact() {
                   id="contact-email"
                   name="email"
                   type="email"
-                  placeholder="john@email.com"
+                  placeholder="isurya2005@gmail.com"
                   value={formData.email}
                   onChange={handleChange}
                   className={`contact-input ${errors.email ? 'contact-input-error' : ''}`}
