@@ -33,7 +33,7 @@ export default function About() {
 
           <Reveal delay={0.3}>
             <p className="text-body leading-[1.7]">
-              Most of what I learn comes through building —
+              Most of what I learn comes through building 
               experimenting with projects, participating in hackathons,
               and collaborating with people around me through communities and events.
             </p>

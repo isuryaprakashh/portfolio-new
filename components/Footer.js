@@ -5,9 +5,9 @@ import { Reveal } from './Reveal'
 import Link from 'next/link'
 
 const socials = [
-  { name: 'GitHub', href: '#' },
-  { name: 'LinkedIn', href: '#' },
-  { name: 'Twitter', href: '#' },
+  { name: 'GitHub', href: 'https://github.com/isuryaprakashh' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/in/isuryaprakashh' },
+  { name: 'X', href: 'https://x.com/isuryaprakashh' },
 ]
 
 export default function Footer() {
@@ -32,7 +32,7 @@ export default function Footer() {
         {/* CTA — gradient button with sparkle */}
         <Reveal delay={0.3}>
           <motion.a
-            href="mailto:hello@suryaprakash.dev"
+            href="mailto:isurya2005@gmail.com"
             className="btn-accent pulse-glow mb-8"
             whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

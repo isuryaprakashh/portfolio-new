@@ -48,7 +48,7 @@ export default function Hero() {
       >
         <span className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse" />
         <span className="text-[var(--color-text-secondary)]">
-          Currently building →
+          Currently a →
         </span>
         <span className="font-medium text-[var(--color-deep-ink)]">
           {displayText}

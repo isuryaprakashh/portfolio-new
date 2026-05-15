@@ -3,6 +3,7 @@ import About from '@/components/About'
 import Projects from '@/components/Projects'
 import Research from '@/components/Research'
 import BeyondCode from '@/components/BeyondCode'
+import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -25,6 +26,10 @@ export default function Home() {
       <div className="section-divider" />
 
       <BeyondCode />
+
+      <div className="section-divider" />
+
+      <Contact />
 
       <div className="section-divider" />
 
