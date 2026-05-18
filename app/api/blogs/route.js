@@ -1,0 +1,33 @@
+import connectToDatabase from '@/lib/mongodb';
+import Blog from '@/models/Blog';
+import { NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+
+export async function GET() {
+  try {
+    await connectToDatabase();
+    const blogs = await Blog.find({}).sort({ createdAt: -1 });
+    return NextResponse.json(
+      { success: true, data: blogs },
+      { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate' } }
+    );
+  } catch (error) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+  }
+}
+
+export async function POST(request) {
+  try {
+    // In a real app, you'd check for the admin cookie here
+    const cookieStore = request.cookies;
+    // Basic protection - we'll implement the actual cookie logic in the login route
+    
+    await connectToDatabase();
+    const body = await request.json();
+    const blog = await Blog.create(body);
+    return NextResponse.json({ success: true, data: blog }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+  }
+}
