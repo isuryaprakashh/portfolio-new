@@ -8,42 +8,20 @@ const socials = [
   { name: 'GitHub', href: 'https://github.com/isuryaprakashh' },
   { name: 'LinkedIn', href: 'https://linkedin.com/in/isuryaprakashh' },
   { name: 'X', href: 'https://x.com/isuryaprakashh' },
+  { name: 'Login', href: '/login' },
 ]
 
 export default function Footer() {
   return (
     <section id="contact" className="pt-[120px] pb-16 relative">
       <div className="container-narrow relative z-10 text-center flex flex-col items-center">
-        <Reveal>
-          <span className="text-label mb-8 block">What's Next</span>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <h2 className="text-display mb-5">Still Exploring?</h2>
-        </Reveal>
-
-        <Reveal delay={0.2}>
-          <p className="text-body leading-[1.7] max-w-[420px] mb-10">
-            I'm always open to new ideas, collaborations, and conversations.
-            If something here resonated, let's connect.
-          </p>
-        </Reveal>
-
-        {/* CTA — gradient button with sparkle */}
-        <Reveal delay={0.3}>
-          <motion.a
-            href="mailto:isurya2005@gmail.com"
-            className="btn-accent pulse-glow mb-8"
-            whileHover={{ y: -3, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span>✦</span>
-            <span>Let's Build Something</span>
-            <span>→</span>
-          </motion.a>
-        </Reveal>
-
         {/* Blog hint */}
+        <div className="text-center mb-16">
+          <Reveal>
+            <span className="text-label mb-6 block">BLOGS</span>
+          </Reveal>
+        </div>
+        
         <Reveal delay={0.4}>
           <p className="mb-16">
             <Link
@@ -73,6 +51,13 @@ export default function Footer() {
                 {social.name}
               </motion.a>
             ))}
+            <Link 
+              href="/login" 
+              className="text-[12px] font-normal text-[var(--color-text-muted)] opacity-30 hover:opacity-100 hover:text-[var(--color-primary)] transition-all duration-300 select-none ml-2"
+              aria-label="Admin Login"
+            >
+              •
+            </Link>
           </div>
         </div>
       </div>
