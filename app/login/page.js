@@ -21,7 +21,7 @@ export default function LoginPage() {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: username.trim(), password }),
       })
 
       const data = await res.json()
@@ -53,6 +53,10 @@ export default function LoginPage() {
                 onChange={(e) => setUsername(e.target.value)}
                 className="contact-input"
                 required
+                autoCapitalize="none"
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck="false"
               />
               <input
                 type="password"
