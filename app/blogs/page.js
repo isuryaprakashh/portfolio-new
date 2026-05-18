@@ -21,7 +21,7 @@ export default function BlogsPage() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch('/api/blogs')
+        const res = await fetch('/api/blogs', { cache: 'no-store' })
         const data = await res.json()
         if (data.success) {
           setBlogPosts(data.data)
@@ -102,7 +102,7 @@ export default function BlogsPage() {
         setShowForm(false)
         setFormData({ _id: '', title: '', slug: '', date: '', excerpt: '', content: '', readTime: '', tags: '' })
         // Refetch
-        const freshRes = await fetch('/api/blogs')
+        const freshRes = await fetch('/api/blogs', { cache: 'no-store' })
         const freshData = await freshRes.json()
         setBlogPosts(freshData.data)
       } else {
