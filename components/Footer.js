@@ -51,13 +51,6 @@ export default function Footer() {
                 {social.name}
               </motion.a>
             ))}
-            <Link 
-              href="/login" 
-              className="text-[12px] font-normal text-[var(--color-text-muted)] opacity-30 hover:opacity-100 hover:text-[var(--color-primary)] transition-all duration-300 select-none ml-2"
-              aria-label="Admin Login"
-            >
-              •
-            </Link>
           </div>
         </div>
       </div>
