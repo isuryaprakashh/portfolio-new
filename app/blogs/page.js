@@ -226,7 +226,7 @@ export default function BlogsPage() {
               </div>
               
               {/* Action Buttons */}
-              <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity absolute right-4 top-4">
+              <div className="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity absolute right-4 top-4">
                 {/* Share Button (Visible to everyone) */}
                 <button 
                   onClick={(e) => handleShare(e, post)} 
