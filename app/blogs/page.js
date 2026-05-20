@@ -138,7 +138,7 @@ export default function BlogsPage() {
           <header className="mb-20 flex justify-between items-start">
             <div>
               <h1 className="text-display text-black mb-4">Writings</h1>
-              <p className="text-body text-[var(--color-muted)] font-light leading-relaxed">
+              <p className="text-body text-[var(--color-muted)] leading-relaxed">
                 Occasionally writing about systems,<br />
                 experiments, and things I'm exploring.
               </p>
@@ -225,14 +225,14 @@ export default function BlogsPage() {
                 <h2 className="text-[1.15rem] font-medium text-black mb-1 tracking-tight leading-snug pr-24">
                   {post.title}
                 </h2>
-                <p className="text-[14px] text-[var(--color-muted)] font-light leading-relaxed mb-3">
+                <p className="text-[14px] text-[var(--color-muted)] leading-relaxed mb-3">
                   {post.excerpt}
                 </p>
                 <div className="flex gap-2">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] tracking-[0.08em] uppercase text-[var(--color-text-muted)] px-2.5 py-1 border border-[var(--color-border)] rounded-full"
+                      className="text-[10px] tracking-[0.08em] uppercase text-[var(--color-text-muted)] px-2.5 py-1 border border-[rgba(0,0,0,0.15)] rounded-full"
                     >
                       {tag}
                     </span>
