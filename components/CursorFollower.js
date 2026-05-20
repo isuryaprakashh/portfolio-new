@@ -32,13 +32,13 @@ export default function CursorFollower() {
 
     let raf
     const animate = () => {
-      // Dot follows closely
-      dotPos.current.x += (mouse.current.x - dotPos.current.x) * 0.35
-      dotPos.current.y += (mouse.current.y - dotPos.current.y) * 0.35
+      // Dot follows exactly immediately
+      dotPos.current.x = mouse.current.x
+      dotPos.current.y = mouse.current.y
 
       // Ring trails behind
-      ringPos.current.x += (mouse.current.x - ringPos.current.x) * 0.15
-      ringPos.current.y += (mouse.current.y - ringPos.current.y) * 0.15
+      ringPos.current.x += (mouse.current.x - ringPos.current.x) * 0.25
+      ringPos.current.y += (mouse.current.y - ringPos.current.y) * 0.25
 
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${dotPos.current.x - 4}px, ${dotPos.current.y - 4}px)`
