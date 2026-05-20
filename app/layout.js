@@ -2,6 +2,7 @@ import './globals.css'
 import { SmoothScrollProvider } from '@/components/SmoothScroll'
 import Navbar from '@/components/Navbar'
 import CursorFollower from '@/components/CursorFollower'
+import SpotifyPlaying from '@/components/SpotifyPlaying'
 
 export const metadata = {
   title: 'Surya Prakash — Engineer, Explorer, Builder',
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
           <CursorFollower />
           <Navbar />
           {children}
+          <SpotifyPlaying />
         </SmoothScrollProvider>
       </body>
     </html>
