@@ -4,10 +4,10 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 const navItems = [
-  { href: '#about', label: 'About', section: 'about' },
-  { href: '#projects', label: 'Work', section: 'projects' },
-  { href: '#research', label: 'Research', section: 'research' },
-  { href: '#contact', label: 'Contact', section: 'contact' },
+  { href: '/#about', label: 'About', section: 'about' },
+  { href: '/#projects', label: 'Work', section: 'projects' },
+  { href: '/#research', label: 'Research', section: 'research' },
+  { href: '/#contact', label: 'Contact', section: 'contact' },
 ]
 
 export default function Navbar() {
@@ -65,7 +65,7 @@ export default function Navbar() {
         </div>
 
         {/* Action Button */}
-        <Link href="#contact" className="btn-primary px-5 h-9 text-[11px]">
+        <Link href="/#contact" className="btn-primary px-5 h-9 text-[11px]">
           Contact Me
         </Link>
       </div>

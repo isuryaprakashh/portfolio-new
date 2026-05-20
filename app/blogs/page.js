@@ -83,7 +83,7 @@ export default function BlogsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Auto-calculate read time so the backend schema doesn't fail
     const calculatedReadTime = calculateReadingTime(formData.content);
 
@@ -92,7 +92,7 @@ export default function BlogsPage() {
       readTime: calculatedReadTime, // Inject the dynamically calculated value
       tags: typeof formData.tags === 'string' ? formData.tags.split(',').map(t => t.trim()).filter(Boolean) : formData.tags
     }
-    
+
     if (!submitData._id) {
       delete submitData._id
     }
@@ -106,7 +106,7 @@ export default function BlogsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submitData)
       })
-      
+
       const responseData = await res.json()
 
       if (res.ok && responseData.success) {
@@ -144,11 +144,11 @@ export default function BlogsPage() {
               </p>
             </div>
             {isAdmin && (
-              <button 
+              <button
                 onClick={() => {
                   setFormData({ _id: '', title: '', slug: '', date: '', excerpt: '', content: '', tags: '' })
                   setShowForm(!showForm)
-                }} 
+                }}
                 className="text-[12px] px-4 py-2 border border-[var(--color-border)] rounded-full hover:bg-[var(--color-primary)] hover:text-white transition-colors"
               >
                 {showForm ? 'Close Editor' : '+ New Blog'}
@@ -161,15 +161,15 @@ export default function BlogsPage() {
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-20 p-6 border border-[var(--color-border)] rounded-2xl bg-[var(--color-card-bg)]">
             <h2 className="text-heading mb-4">{formData._id ? 'Edit Blog' : 'Create Blog'}</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <input required placeholder="Title" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="contact-input !p-3 !text-sm" />
-              <input required placeholder="Slug (e.g. my-post)" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} className="contact-input !p-3 !text-sm" />
+              <input required placeholder="Title" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} className="contact-input !p-3 !text-sm" />
+              <input required placeholder="Slug (e.g. my-post)" value={formData.slug} onChange={e => setFormData({ ...formData, slug: e.target.value })} className="contact-input !p-3 !text-sm" />
               <div className="flex gap-4">
-                <input required placeholder="Date (e.g. 2026 · 05)" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="contact-input !p-3 !text-sm flex-1" />
+                <input required placeholder="Date (e.g. 2026 · 05)" value={formData.date} onChange={e => setFormData({ ...formData, date: e.target.value })} className="contact-input !p-3 !text-sm flex-1" />
                 <input disabled placeholder="Read Time (Auto-calculated)" className="contact-input !p-3 !text-sm flex-1 opacity-50 bg-gray-100 cursor-not-allowed" />
               </div>
-              <input placeholder="Tags (comma separated)" value={formData.tags} onChange={e => setFormData({...formData, tags: e.target.value})} className="contact-input !p-3 !text-sm" />
-              <textarea required placeholder="Excerpt" value={formData.excerpt} onChange={e => setFormData({...formData, excerpt: e.target.value})} className="contact-input contact-textarea !min-h-[80px] !p-3 !text-sm" />
-              <textarea required placeholder="Markdown Content..." value={formData.content} onChange={e => setFormData({...formData, content: e.target.value})} className="contact-input contact-textarea !min-h-[250px] !p-3 !text-sm font-mono" />
+              <input placeholder="Tags (comma separated)" value={formData.tags} onChange={e => setFormData({ ...formData, tags: e.target.value })} className="contact-input !p-3 !text-sm" />
+              <textarea required placeholder="Excerpt" value={formData.excerpt} onChange={e => setFormData({ ...formData, excerpt: e.target.value })} className="contact-input contact-textarea !min-h-[80px] !p-3 !text-sm" />
+              <textarea required placeholder="Markdown Content..." value={formData.content} onChange={e => setFormData({ ...formData, content: e.target.value })} className="contact-input contact-textarea !min-h-[250px] !p-3 !text-sm font-mono" />
               <button type="submit" className="btn-primary !h-12 w-full mt-2">Save Blog</button>
             </form>
           </motion.div>
@@ -197,99 +197,98 @@ export default function BlogsPage() {
             ))}
           </div>
         ) : (
-          <StaggerContainer className="flex flex-col" staggerDelay={0.12}>
-          {blogPosts.map((post) => (
-            <motion.article
-              key={post._id}
-              onClick={() => router.push(`/blogs/${post.slug}`)}
-              className="group relative flex flex-col md:flex-row gap-3 md:gap-10 py-8 border-b border-[var(--color-border)] first:border-t cursor-pointer transition-colors duration-300 hover:bg-black/5 rounded-xl px-4 -mx-4"
-              variants={staggerChild}
-              whileHover={{ x: 6, transition: { duration: 0.3 } }}
-            >
-              {/* Date & Stats */}
-              <div className="flex md:flex-col gap-3 md:gap-1 shrink-0 md:min-w-[80px]">
-                <span className="text-[12px] tracking-[0.08em] text-[var(--color-text-muted)]">
-                  {post.date}
-                </span>
-                <span className="text-[10px] tracking-[0.06em] text-[var(--color-text-muted)] opacity-60">
-                  {calculateReadingTime(post.content)}
-                </span>
-                <span className="text-[10px] tracking-[0.06em] text-[var(--color-primary)] opacity-80 mt-1 flex items-center gap-1">
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                  {post.views || 0}
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="flex-1">
-                <h2 className="text-[1.15rem] font-medium text-black mb-1 tracking-tight leading-snug pr-24">
-                  {post.title}
-                </h2>
-                <p className="text-[14px] text-[var(--color-muted)] leading-relaxed mb-3">
-                  {post.excerpt}
-                </p>
-                <div className="flex gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] tracking-[0.08em] uppercase text-[var(--color-text-muted)] px-2.5 py-1 border border-[rgba(0,0,0,0.15)] rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+          <StaggerContainer className="flex flex-col gap-5" staggerDelay={0.12}>
+            {blogPosts.map((post) => (
+              <motion.article
+                key={post._id}
+                onClick={() => router.push(`/blogs/${post.slug}`)}
+                className="group relative flex flex-col md:flex-row gap-5 md:gap-8 p-6 md:p-8 cursor-pointer bg-white border border-[var(--color-border)] rounded-[24px] transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+                variants={staggerChild}
+              >
+                {/* Date & Stats */}
+                <div className="flex md:flex-col gap-3 md:gap-1 shrink-0 md:min-w-[80px]">
+                  <span className="text-[12px] tracking-[0.08em] text-[var(--color-text-muted)]">
+                    {post.date}
+                  </span>
+                  <span className="text-[10px] tracking-[0.06em] text-[var(--color-text-muted)] opacity-60">
+                    {calculateReadingTime(post.content)}
+                  </span>
+                  <span className="text-[10px] tracking-[0.06em] text-[var(--color-primary)] opacity-80 mt-1 flex items-center gap-1">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    {post.views || 0}
+                  </span>
                 </div>
-              </div>
-              
-              {/* Action Buttons */}
-              <div className="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity absolute right-4 top-4">
-                <button 
-                  onClick={(e) => handleShare(e, post)} 
-                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform hover:-translate-y-0.5"
-                  style={{ background: 'rgba(99, 102, 241, 0.08)' }}
-                  title="Share"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                    <polyline points="16 6 12 2 8 6"></polyline>
-                    <line x1="12" y1="2" x2="12" y2="15"></line>
-                  </svg>
-                </button>
 
-                {isAdmin && (
-                  <>
-                    <button 
-                      onClick={(e) => { e.stopPropagation(); handleEdit(post); }} 
-                      className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform hover:-translate-y-0.5"
-                      style={{ background: 'rgba(139, 158, 130, 0.1)' }}
-                      title="Edit"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-sage)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                      </svg>
-                    </button>
-                    <button 
-                      onClick={(e) => { e.stopPropagation(); handleDelete(post._id); }} 
-                      className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform hover:-translate-y-0.5"
-                      style={{ background: 'rgba(239, 68, 68, 0.08)' }}
-                      title="Delete"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                      </svg>
-                    </button>
-                  </>
-                )}
-              </div>
-            </motion.article>
-          ))}
-          {blogPosts.length === 0 && (
-            <p className="text-[14px] text-[var(--color-text-muted)] py-10 text-center">No blogs published yet.</p>
-          )}
-        </StaggerContainer>
+                {/* Content */}
+                <div className="flex-1">
+                  <h2 className="text-[1.25rem] font-semibold text-black mb-2 tracking-tight leading-snug pr-24 transition-colors duration-300 group-hover:text-[var(--color-primary)]">
+                    {post.title}
+                  </h2>
+                  <p className="text-[15px] text-[var(--color-muted)] leading-relaxed mb-4 max-w-[95%]">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex gap-2">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[10px] tracking-[0.08em] uppercase text-[var(--color-text-muted)] px-2.5 py-1 border border-[rgba(0,0,0,0.15)] rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity absolute right-4 top-4">
+                  <button
+                    onClick={(e) => handleShare(e, post)}
+                    className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform hover:-translate-y-0.5"
+                    style={{ background: 'rgba(99, 102, 241, 0.08)' }}
+                    title="Share"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                      <polyline points="16 6 12 2 8 6"></polyline>
+                      <line x1="12" y1="2" x2="12" y2="15"></line>
+                    </svg>
+                  </button>
+
+                  {isAdmin && (
+                    <>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleEdit(post); }}
+                        className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform hover:-translate-y-0.5"
+                        style={{ background: 'rgba(139, 158, 130, 0.1)' }}
+                        title="Edit"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-sage)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleDelete(post._id); }}
+                        className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform hover:-translate-y-0.5"
+                        style={{ background: 'rgba(239, 68, 68, 0.08)' }}
+                        title="Delete"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                          <line x1="10" y1="11" x2="10" y2="17"></line>
+                          <line x1="14" y1="11" x2="14" y2="17"></line>
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                </div>
+              </motion.article>
+            ))}
+            {blogPosts.length === 0 && (
+              <p className="text-[14px] text-[var(--color-text-muted)] py-10 text-center">No blogs published yet.</p>
+            )}
+          </StaggerContainer>
         )}
 
         <Reveal delay={0.3}>

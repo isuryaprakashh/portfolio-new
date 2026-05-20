@@ -13,25 +13,29 @@ const socials = [
 
 export default function Footer() {
   return (
-    <section id="contact" className="pt-[120px] pb-16 relative">
+    <section className="pt-[120px] pb-16 relative">
       <div className="container-narrow relative z-10 text-center flex flex-col items-center">
         {/* Blog hint */}
-        <div className="text-center mb-16">
+        <div className="mb-24 flex flex-col items-center">
           <Reveal>
-            <span className="text-label mb-6 block">BLOGS</span>
+            <span className="text-[10px] font-medium tracking-[0.15em] uppercase text-[var(--color-text-muted)] mb-4 block">
+              Writings
+            </span>
           </Reveal>
-        </div>
-        
-        <Reveal delay={0.4}>
-          <p className="mb-16">
+          <Reveal delay={0.2}>
             <Link
               href="/blogs"
-              className="text-[12px] text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300 border-b border-transparent hover:border-[var(--color-primary)] pb-0.5"
+              className="group flex flex-col items-center gap-3"
             >
-              Occasionally writing about systems, experiments, and things I'm exploring.
+              <p className="text-[15px] text-[var(--color-deep-ink)] font-medium max-w-[400px] leading-relaxed transition-colors group-hover:text-[var(--color-primary)]">
+                Occasionally writing about systems, experiments, and things I'm exploring.
+              </p>
+              <span className="text-[12px] text-[var(--color-text-muted)] flex items-center gap-1.5 transition-colors group-hover:text-[var(--color-primary)] mt-1">
+                Read the blog <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </span>
             </Link>
-          </p>
-        </Reveal>
+          </Reveal>
+        </div>
 
         {/* Bottom bar */}
         <div className="w-full flex flex-col md:flex-row items-center justify-between pt-8 border-t border-[var(--color-border)] gap-4">

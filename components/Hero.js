@@ -35,7 +35,7 @@ export default function Hero() {
     return () => clearTimeout(timeout)
   }, [displayText, isDeleting, roleIndex])
 
-  const nameWords = ['Surya', 'Prakash']
+  const nameWords = ['Surya', 'Prakash', 'Inukurthi']
 
   return (
     <section className="flex flex-col items-center pt-28 pb-16 px-10 text-center max-w-[1200px] mx-auto min-h-[90vh] justify-center">
