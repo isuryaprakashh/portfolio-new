@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Reveal, StaggerContainer, staggerChild } from './Reveal'
 
 import dynamic from 'next/dynamic';
+import 'react-github-calendar/tooltips.css';
 
 const GitHubCalendar = dynamic(
   () => import('react-github-calendar').then((mod) => mod.GitHubCalendar),
@@ -93,8 +94,8 @@ export default function BeyondCode() {
               </svg>
               Consistency in Open Source
             </h3>
-            <div className="w-full overflow-x-auto pb-4 scrollbar-hide">
-              <div className="min-w-[750px]">
+            <div className="w-full overflow-x-auto pb-4 scrollbar-hide github-calendar-wrapper">
+              <div className="min-w-[750px] w-full">
                 <GitHubCalendar 
                   username="isuryaprakashh" 
                   colorScheme="light"
@@ -105,6 +106,11 @@ export default function BeyondCode() {
                   blockSize={12}
                   blockMargin={4}
                   blockRadius={3}
+                  tooltips={{
+                    activity: {
+                      text: (activity) => `${activity.count} contributions on ${activity.date}`,
+                    }
+                  }}
                 />
               </div>
             </div>

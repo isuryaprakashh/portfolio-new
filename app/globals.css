@@ -786,3 +786,23 @@ a.contact-reach-card:hover {
     padding-bottom: 80px;
   }
 }
+
+/* ── GitHub Heatmap Responsive Centering ── */
+.github-calendar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.github-calendar-wrapper > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.github-calendar-wrapper svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 860px; /* Optimal size to fill the card beautifully on desktop */
+  margin: 0 auto;
+}

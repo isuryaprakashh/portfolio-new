@@ -34,7 +34,7 @@ export default function SpotifyPlaying() {
       animate={{ y: 0, opacity: 1 }}
       whileHover={{ y: -4, scale: 1.02 }}
     >
-      <div className="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-[var(--color-card-bg-alt)] shadow-sm">
+      <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-[var(--color-card-bg-alt)] shadow-sm">
         {data.albumImageUrl ? (
           <img 
             src={data.albumImageUrl} 
@@ -70,7 +70,7 @@ export default function SpotifyPlaying() {
             </svg>
           )}
           <span className="text-[9px] font-bold text-[#1DB954] uppercase tracking-wider">
-            {data.isPlaying ? 'Now Playing' : 'Spotify'}
+            {data.isPlaying ? 'Listening Now' : 'Last Listened'}
           </span>
         </div>
         
