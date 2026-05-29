@@ -27,6 +27,14 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide the read time'],
   },
+  coverImage: {
+    type: String,
+    default: '',
+  },
+  subtitle: {
+    type: String,
+    default: '',
+  },
   tags: {
     type: [String],
     default: [],

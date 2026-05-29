@@ -14,6 +14,7 @@ const projects = [
     tags: ['AI-Powered', 'Product Thinking', 'Intelligent Systems'],
     image: '/projects/HireVexa.png',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    liveUrl: 'https://hirevexa.vercel.app/',
   },
 
   {
@@ -26,6 +27,7 @@ const projects = [
     tags: ['Community Systems', 'MERN Stack', 'Collaboration'],
     image: '/projects/aprameya.png',
     gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    liveUrl: 'https://aprameya.kluniversity.me/',
   },
 
   {
@@ -50,6 +52,7 @@ const projects = [
     tags: ['Immersive Experience', 'Full-Stack', 'Design Systems'],
     image: '/projects/asthetica.png',
     gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+    liveUrl: 'https://asthetica.vercel.app/',
   },
 
   {
@@ -62,6 +65,7 @@ const projects = [
     tags: ['AI Productivity', 'Workflow Systems', 'Hackathon'],
     image: '/projects/OdinMail.png',
     gradient: 'linear-gradient(135deg, #13547a 0%, #80d0c7 100%)',
+    liveUrl: 'https://odin-mail-dusky.vercel.app/',
   },
 
   {
@@ -74,6 +78,7 @@ const projects = [
     tags: ['Web Platform', 'Management System', 'User Experience'],
     image: '/projects/property-sales.png',
     gradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+    liveUrl: 'http://psrm.pythonanywhere.com/',
   },
 ]
 
@@ -165,6 +170,34 @@ function ProjectCard({ project, index }) {
               </span>
             ))}
           </div>
+
+          {/* Live project link button */}
+          {project.liveUrl && (
+            <div>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-live-btn"
+                style={{ '--project-gradient': project.gradient }}
+              >
+                <span>Live Project</span>
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7" />
+                  <polyline points="7 7 17 7 17 17" />
+                </svg>
+              </a>
+            </div>
+          )}
         </div>
       </article>
     </Reveal>
