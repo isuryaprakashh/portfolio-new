@@ -211,7 +211,7 @@ export default function Contact() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="contact-reach-icon" style={{ background: 'rgba(99, 102, 241, 0.08)' }}>
+                <div className="contact-reach-icon" style={{ background: 'rgba(30, 58, 138, 0.08)' }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                     <path d="M22 7l-10 7L2 7" />

@@ -6,8 +6,8 @@
 
 @theme {
   /* Core Colors — Apple-inspired soft palette */
-  --color-primary: #6366F1;
-  --color-primary-hover: #5558E6;
+  --color-primary: #1E3A8A;
+  --color-primary-hover: #1A306D;
   --color-brand-accent: #06B6D4;
   --color-page-bg: #F4F4F6;
   --color-card-bg: #FFFFFF;
@@ -208,7 +208,7 @@
   left: 0;
   width: 36px;
   height: 36px;
-  border: 1.5px solid rgba(99, 102, 241, 0.3);
+  border: 1.5px solid rgba(30, 58, 138, 0.3);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
@@ -219,7 +219,7 @@
 .cursor-ring.hovering {
   width: 56px;
   height: 56px;
-  border-color: rgba(99, 102, 241, 0.5);
+  border-color: rgba(30, 58, 138, 0.5);
 }
 
 /* ── Navbar ── */
@@ -580,11 +580,11 @@
 
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.2);
+    box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.2);
   }
 
   50% {
-    box-shadow: 0 0 0 14px rgba(99, 102, 241, 0);
+    box-shadow: 0 0 0 14px rgba(30, 58, 138, 0);
   }
 }
 
@@ -637,7 +637,7 @@
 
 .contact-input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08);
   background: var(--color-card-bg);
 }
 
