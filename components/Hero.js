@@ -126,13 +126,15 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="scroll-indicator"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        className="scroll-indicator mt-8"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
       >
-        <span>Scroll</span>
-        <div className="scroll-arrow">↓</div>
+        <span className="scroll-indicator-text">Scroll</span>
+        <div className="scroll-mouse-icon">
+          <span className="scroll-mouse-wheel" />
+        </div>
       </motion.div>
     </section>
   )
