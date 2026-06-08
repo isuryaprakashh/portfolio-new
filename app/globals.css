@@ -334,97 +334,80 @@
   border-left-color: var(--color-brand-accent);
 }
 
-/* ── Project Cards — Premium floating style ── */
-.project-visual-card {
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 24px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+/* ── Project Cards — Premium Grid style ── */
+.project-grid-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s ease;
+}
+
+.project-grid-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(99, 102, 241, 0.25) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.project-grid-card-visual {
+  background: #F8F9FA;
+  position: relative;
   overflow: hidden;
-  padding: 6px;
-  transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
 }
 
-.project-visual-card:hover {
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.03);
+/* Float visual images nicely */
+.project-grid-card-img-container {
+  will-change: transform;
 }
 
-.project-image-container {
-  border-radius: 18px; /* 24px outer − 6px padding = 18px inner */
-}
-
-/* Project pill tags */
-.project-pill-tag {
+/* Link Button style on cards */
+.project-grid-card-link-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-card-bg-alt);
+  border: 1px solid var(--color-border);
+  cursor: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-grid-card-link-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white) !important;
+  border-color: var(--color-primary);
+}
+
+/* Tech Stack Icon Tooltip */
+.project-tech-icon {
+  position: relative;
+}
+
+.project-tech-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.85);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              opacity 0.2s ease;
+  background: var(--color-deep-ink);
+  color: var(--color-white);
+  padding: 5px 10px;
+  border-radius: 6px;
   font-size: 11px;
   font-weight: 500;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: var(--color-card-bg-alt);
-  color: var(--color-text-secondary);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  letter-spacing: 0.04em;
-  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 30;
 }
 
-.project-pill-tag:hover {
-  background: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
-  transform: translateY(-1px);
-}
-
-/* ── Project Live Link Button ── */
-.project-live-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  color: var(--color-deep-ink);
-  font-size: 13px;
-  font-weight: 500;
-  border-radius: var(--radius-full);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  text-decoration: none;
-  box-shadow: var(--shadow-sm);
-  margin-top: 20px;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.project-live-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--project-gradient);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-live-btn:hover {
-  color: var(--color-white);
-  border-color: transparent;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-}
-
-.project-live-btn:hover::before {
+.project-tech-icon:hover .project-tech-tooltip {
   opacity: 1;
-}
-
-.project-live-btn svg {
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  color: var(--color-text-secondary);
-}
-
-.project-live-btn:hover svg {
-  transform: translate(2px, -2px);
-  color: var(--color-white);
+  transform: translateX(-50%) scale(1);
 }
 
 /* ── Gradient Text ── */
