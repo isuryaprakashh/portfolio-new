@@ -47,7 +47,7 @@ export default function Research() {
               </h3>
               
               <p className="text-body leading-[1.7] mb-4 text-[var(--color-text-secondary)]">
-                Exploring deep learning models for intelligent scene classification. This study starts with preprocessing, feature extraction, and training with an 80-20 split of ANN, CNN, and a Transfer Learning model on ResNet-18, achieving a validation accuracy of 95.94%.
+                What started as a project ended up as a conference paper. This study explores deep learning models (ANN, CNN, and ResNet-18) for intelligent scene classification, achieving a validation accuracy of 95.94%.
               </p>
 
               {/* Abstract Toggle Button */}
@@ -88,47 +88,53 @@ export default function Research() {
 
               {/* Action Buttons */}
               {/* Action Links */}
-              <div className="flex flex-col gap-3 mt-6 mb-6">
-                <a
-                  href="https://ieeexplore.ieee.org/document/11525589"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-primary)] hover:underline cursor-none w-fit"
-                >
-                  <span className="truncate max-w-[280px] sm:max-w-none">https://ieeexplore.ieee.org/document/11525589</span>
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    className="shrink-0"
+              <div className="flex flex-col sm:flex-row sm:items-center gap-x-8 gap-y-3 mt-6 mb-6">
+                <div className="flex items-center gap-2 flex-wrap text-[14px]">
+                  <span className="font-medium text-[var(--color-text-secondary)]">IEEE Document Link:</span>
+                  <a
+                    href="https://ieeexplore.ieee.org/document/11525589"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[13.5px] text-[var(--color-primary)] hover:underline cursor-none w-fit font-sans"
                   >
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
-                </a>
-                <a
-                  href="https://doi.org/10.23919/INDIACom70271.2026.11525589"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-primary)] hover:underline cursor-none w-fit"
-                >
-                  <span className="truncate max-w-[280px] sm:max-w-none">https://doi.org/10.23919/INDIACom70271.2026.11525589</span>
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    className="shrink-0"
+                    <span className="truncate max-w-[280px] sm:max-w-none">https://ieeexplore.ieee.org/document/11525589</span>
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      className="shrink-0"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 flex-wrap text-[14px]">
+                  <span className="font-medium text-[var(--color-text-secondary)]">DOI:</span>
+                  <a
+                    href="https://doi.org/10.23919/INDIACom70271.2026.11525589"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[13.5px] text-[var(--color-primary)] hover:underline cursor-none w-fit font-sans"
                   >
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
-                </a>
+                    <span className="truncate max-w-[280px] sm:max-w-none">https://doi.org/10.23919/INDIACom70271.2026.11525589</span>
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      className="shrink-0"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </a>
+                </div>
               </div>
 
               {/* Metadata tags */}
