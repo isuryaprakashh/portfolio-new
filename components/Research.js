@@ -87,21 +87,23 @@ export default function Research() {
               </AnimatePresence>
 
               {/* Action Buttons */}
-              <div className="flex items-center gap-3 mt-6 flex-wrap mb-6">
+              {/* Action Links */}
+              <div className="flex flex-col gap-3 mt-6 mb-6">
                 <a
                   href="https://ieeexplore.ieee.org/document/11525589"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full bg-[var(--color-deep-ink)] text-white hover:bg-[var(--color-primary)] transition-all duration-300 shadow-sm cursor-none"
+                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-primary)] hover:underline cursor-none w-fit"
                 >
-                  <span>IEEE Xplore</span>
+                  <span className="truncate max-w-[280px] sm:max-w-none">https://ieeexplore.ieee.org/document/11525589</span>
                   <svg
-                    width="11"
-                    height="11"
+                    width="12"
+                    height="12"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2.5"
+                    className="shrink-0"
                   >
                     <line x1="7" y1="17" x2="17" y2="7" />
                     <polyline points="7 7 17 7 17 17" />
@@ -111,16 +113,17 @@ export default function Research() {
                   href="https://doi.org/10.23919/INDIACom70271.2026.11525589"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full border border-[var(--color-border)] bg-[var(--color-card-bg)] text-[var(--color-text-secondary)] hover:bg-[var(--color-card-bg-alt)] transition-all duration-300 shadow-sm cursor-none"
+                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-primary)] hover:underline cursor-none w-fit"
                 >
-                  <span>DOI Link</span>
+                  <span className="truncate max-w-[280px] sm:max-w-none">https://doi.org/10.23919/INDIACom70271.2026.11525589</span>
                   <svg
-                    width="11"
-                    height="11"
+                    width="12"
+                    height="12"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2.5"
+                    className="shrink-0"
                   >
                     <line x1="7" y1="17" x2="17" y2="7" />
                     <polyline points="7 7 17 7 17 17" />
