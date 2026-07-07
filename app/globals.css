@@ -162,8 +162,8 @@
 
   /* ── Layout ── */
   .section-spacing {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   .container-main {
@@ -801,8 +801,8 @@ a.contact-reach-card:hover {
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .section-spacing {
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 36px;
+    padding-bottom: 36px;
   }
 
   .container-main,
@@ -878,8 +878,8 @@ a.contact-reach-card:hover {
   }
 
   .section-spacing {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
 
   /* Blog responsive — tablet */

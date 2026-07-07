@@ -59,7 +59,7 @@ export default function Footer() {
   }, [visitorCount])
 
   return (
-    <section className="pt-[120px] pb-16 relative">
+    <section className="pt-[40px] md:pt-[48px] lg:pt-[60px] pb-16 relative">
       <div className="container-narrow relative z-10 text-center flex flex-col items-center">
         {/* Blog hint */}
         <div className="mb-20 flex flex-col items-center">

@@ -45,9 +45,9 @@ export default function Research() {
               <h3 className="text-heading mb-3">
                 Enhanced Visual Understanding Using Deep Learning Based on Scene Classification
               </h3>
-              
+
               <p className="text-body leading-[1.7] mb-4 text-[var(--color-text-secondary)]">
-                What started as a project ended up as a conference paper. This study explores deep learning models (ANN, CNN, and ResNet-18) for intelligent scene classification, achieving a validation accuracy of 95.94%.
+                What started as a project ended up as a conference paper.
               </p>
 
               {/* Abstract Toggle Button */}
