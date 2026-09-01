@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Reveal } from './Reveal'
+import { Mail, Phone, MapPin, FileText, Copy, Check, Send, ArrowUpRight, CheckCircle2, AlertCircle } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,15 @@ export default function Contact() {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
+  const [copiedEmail, setCopiedEmail] = useState(false)
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    navigator.clipboard.writeText('isurya2005@gmail.com')
+    setCopiedEmail(true)
+    setTimeout(() => setCopiedEmail(false), 2000)
+  }
 
   const validateForm = () => {
     const newErrors = {}
@@ -174,7 +184,7 @@ export default function Contact() {
                 ) : (
                   <>
                     <span>Send Message</span>
-                    <span>→</span>
+                    <Send className="w-4 h-4" />
                   </>
                 )}
               </motion.button>
@@ -187,7 +197,11 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <span>{submitStatus.type === 'success' ? '✓' : '✕'}</span>
+                  {submitStatus.type === 'success' ? (
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  ) : (
+                    <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                  )}
                   <span>{submitStatus.message}</span>
                 </motion.div>
               )}
@@ -204,27 +218,47 @@ export default function Contact() {
                 <div className="h-px bg-[var(--color-border)] flex-grow" />
               </div>
 
-              {/* Email card */}
-              <motion.a
-                href="mailto:isurya2005@gmail.com"
-                className="contact-reach-card group"
+              {/* Email card with Copy button */}
+              <motion.div
+                className="contact-reach-card group relative cursor-pointer"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="contact-reach-icon" style={{ background: 'rgba(30, 58, 138, 0.08)' }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="M22 7l-10 7L2 7" />
-                  </svg>
-                </div>
-                <div className="flex flex-col gap-1 min-w-0">
-                  <span className="text-label">Email</span>
-                  <span className="text-[14px] font-medium text-[var(--color-deep-ink)] truncate group-hover:text-[var(--color-primary)] transition-colors duration-300">
-                    isurya2005@gmail.com
-                  </span>
-                </div>
-                <span className="contact-reach-arrow group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-              </motion.a>
+                <a
+                  href="mailto:isurya2005@gmail.com"
+                  className="flex items-center gap-3.5 flex-1 min-w-0"
+                >
+                  <div className="contact-reach-icon" style={{ background: 'rgba(30, 58, 138, 0.08)' }}>
+                    <Mail className="w-5 h-5 text-[var(--color-primary)]" />
+                  </div>
+                  <div className="flex flex-col gap-0.5 min-w-0">
+                    <span className="text-label">Email</span>
+                    <span className="text-[14px] font-medium text-[var(--color-deep-ink)] truncate group-hover:text-[var(--color-primary)] transition-colors duration-300">
+                      isurya2005@gmail.com
+                    </span>
+                  </div>
+                </a>
+
+                {/* Quick Copy Button */}
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="p-2 rounded-lg text-xs font-medium border border-[var(--color-border)] bg-[var(--color-card-bg-alt)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-200 shrink-0 flex items-center gap-1 cursor-none focus:outline-none"
+                  title="Copy email to clipboard"
+                >
+                  {copiedEmail ? (
+                    <span className="text-emerald-600 font-semibold flex items-center gap-1 text-[11px]">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      Copied
+                    </span>
+                  ) : (
+                    <span className="text-[11px] text-[var(--color-text-muted)] group-hover:text-[var(--color-deep-ink)] flex items-center gap-1">
+                      <Copy className="w-3.5 h-3.5" />
+                      Copy
+                    </span>
+                  )}
+                </button>
+              </motion.div>
 
               {/* Phone card */}
               <motion.a
@@ -234,28 +268,23 @@ export default function Contact() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="contact-reach-icon" style={{ background: 'rgba(139, 158, 130, 0.1)' }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-sage)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                  </svg>
+                  <Phone className="w-5 h-5 text-[var(--color-sage)]" />
                 </div>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0.5">
                   <span className="text-label">Phone</span>
                   <span className="text-[14px] font-medium text-[var(--color-deep-ink)] group-hover:text-[var(--color-primary)] transition-colors duration-300">
                     +91 9533551895
                   </span>
                 </div>
-                <span className="contact-reach-arrow group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                <ArrowUpRight className="contact-reach-arrow w-4 h-4 ml-auto text-[var(--color-text-muted)] group-hover:text-[var(--color-primary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </motion.a>
 
               {/* Location card (non-clickable) */}
               <div className="contact-reach-card">
                 <div className="contact-reach-icon" style={{ background: 'rgba(212, 165, 116, 0.1)' }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-warm)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
+                  <MapPin className="w-5 h-5 text-[var(--color-warm)]" />
                 </div>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0.5">
                   <span className="text-label">Location</span>
                   <span className="text-[14px] font-medium text-[var(--color-deep-ink)]">
                     India
@@ -273,21 +302,15 @@ export default function Contact() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="contact-reach-icon" style={{ background: 'rgba(6, 182, 212, 0.1)' }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                    <polyline points="10 9 9 9 8 9" />
-                  </svg>
+                  <FileText className="w-5 h-5 text-[var(--color-brand-accent)]" />
                 </div>
-                <div className="flex flex-col gap-1 min-w-0">
+                <div className="flex flex-col gap-0.5 min-w-0">
                   <span className="text-label">Resume</span>
                   <span className="text-[14px] font-medium text-[var(--color-deep-ink)] group-hover:text-[var(--color-primary)] transition-colors duration-300 truncate">
-                   SURYA_RESUME
+                    SURYA_RESUME.pdf
                   </span>
                 </div>
-                <span className="contact-reach-arrow group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                <ArrowUpRight className="contact-reach-arrow w-4 h-4 ml-auto text-[var(--color-text-muted)] group-hover:text-[var(--color-primary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </motion.a>
 
               {/* Status badge */}

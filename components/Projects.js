@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import { Reveal } from './Reveal'
+import { Globe, ExternalLink, Sparkles } from 'lucide-react'
+import { GithubIcon } from './Icons'
 
 const projects = [
   {
@@ -12,6 +14,7 @@ const projects = [
     description:
       'An AI-powered platform that rethinks hiring through intelligent applications and product thinking. Built to make recruitment smarter, not just faster.',
     tags: ['AI-Powered', 'Product Thinking', 'Intelligent Systems'],
+    metric: 'AI-Driven Matching',
     image: '/projects/HireVexa.png',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     liveUrl: 'https://hirevexa.vercel.app/',
@@ -27,6 +30,7 @@ const projects = [
     description:
       'A centralized platform designed for managing club operations, events, and collaboration. Built with a focus on structure, usability, and scalable coordination within student communities.',
     tags: ['Community Systems', 'MERN Stack', 'Collaboration'],
+    metric: 'Club Coordination System',
     image: '/projects/aprameya.png',
     gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
     liveUrl: 'https://aprameya.kluniversity.me/',
@@ -42,6 +46,7 @@ const projects = [
     description:
       'What started as experimentation in deep learning eventually evolved into published research presented at INDIACOM 2026. A journey from curiosity to contribution.',
     tags: ['Deep Learning', 'Computer Vision', 'Research'],
+    metric: '95.94% Validation Accuracy • IEEE INDIACom 2026',
     image: '/projects/Scene-Classification.png',
     gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
     githubUrl: 'https://github.com/isuryaprakashh/Scene-Classification',
@@ -56,6 +61,7 @@ const projects = [
     description:
       'An immersive product experience balancing full-stack architecture with design and systems thinking. Built to explore how digital commerce can feel more like a curated gallery than a storefront.',
     tags: ['Immersive Experience', 'Full-Stack', 'Design Systems'],
+    metric: 'Curated Digital Commerce',
     image: '/projects/asthetica.png',
     gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
     liveUrl: 'https://asthetica.vercel.app/',
@@ -71,6 +77,7 @@ const projects = [
     description:
       'An AI-driven productivity tool focused on organizing, prioritizing, and drafting emails intelligently. Built around the idea that communication systems should feel seamless and less overwhelming.',
     tags: ['AI Productivity', 'Workflow Systems', 'Hackathon'],
+    metric: 'Hackathon Built • AI Workflow',
     image: '/projects/OdinMail.png',
     gradient: 'linear-gradient(135deg, #13547a 0%, #80d0c7 100%)',
     liveUrl: 'https://odin-mail-dusky.vercel.app/',
@@ -86,6 +93,7 @@ const projects = [
     description:
       'A web-based platform focused on improving the experience of browsing and managing property rentals and sales through structured interfaces and streamlined workflows.',
     tags: ['Web Platform', 'Management System', 'User Experience'],
+    metric: 'Full-Stack Property Portal',
     image: '/projects/property-sales.png',
     gradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
     liveUrl: 'http://psrm.pythonanywhere.com/',
@@ -154,8 +162,6 @@ function ProjectCard({ project, index }) {
             className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
             style={{ background: project.gradient, opacity: 0.15 }}
           />
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
-          
           {/* Centered screenshot */}
           <div className="project-grid-card-img-container relative w-[96%] h-[92%] rounded-xl overflow-hidden border border-white/40 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
             <Image
@@ -171,12 +177,26 @@ function ProjectCard({ project, index }) {
 
         {/* Bottom content section */}
         <div className="p-6 md:p-8 flex flex-col flex-grow">
+          {/* Tags row */}
+          {project.tags && (
+            <div className="flex flex-wrap gap-2 mb-3">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[11px] font-medium tracking-wide uppercase px-2.5 py-0.5 rounded-md bg-[var(--color-card-bg-alt)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
           {/* Title & links row */}
           <div className="flex items-center justify-between mb-3.5">
             <h3 className="text-[20px] font-bold text-[var(--color-deep-ink)] tracking-tight">
               {project.title}
             </h3>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}
@@ -185,9 +205,7 @@ function ProjectCard({ project, index }) {
                   className="project-grid-card-link-btn text-[var(--color-text-muted)] hover:text-[var(--color-deep-ink)] transition-colors duration-200"
                   title="View GitHub Repository"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
+                  <GithubIcon className="w-4 h-4" />
                 </a>
               )}
               {project.liveUrl && (
@@ -198,11 +216,7 @@ function ProjectCard({ project, index }) {
                   className="project-grid-card-link-btn text-[var(--color-text-muted)] hover:text-[var(--color-deep-ink)] transition-colors duration-200"
                   title="View Live Site"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="2" y1="12" x2="22" y2="12" />
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                  </svg>
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               )}
             </div>
@@ -218,7 +232,7 @@ function ProjectCard({ project, index }) {
             {project.technologies?.map((slug) => (
               <div
                 key={slug}
-                className="project-tech-icon w-8.5 h-8.5 rounded-full border border-[var(--color-border)] bg-[var(--color-card-bg-alt)] flex items-center justify-center shadow-sm hover:scale-110 hover:border-[var(--color-primary)] transition-all duration-200 cursor-none"
+                className="project-tech-icon w-8.5 h-8.5 rounded-full border border-[var(--color-border)] bg-[var(--color-card-bg-alt)] flex items-center justify-center shadow-xs hover:scale-110 hover:border-[var(--color-primary)] transition-all duration-200 cursor-none"
               >
                 {/* Custom Tooltip */}
                 <span className="project-tech-tooltip">
@@ -229,6 +243,9 @@ function ProjectCard({ project, index }) {
                   alt={slug}
                   className="w-4.5 h-4.5 object-contain"
                   loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               </div>
             ))}

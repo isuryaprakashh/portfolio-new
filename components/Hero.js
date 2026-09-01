@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { ArrowDown } from 'lucide-react'
 
 const roles = ['Builder', 'Creator', 'Explorer', 'Engineer']
 
@@ -118,9 +119,9 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.85 }}
       >
-        <a href="#projects" className="btn-glow">
+        <a href="#projects" className="btn-glow group">
           View My Work
-          <span className="text-[var(--color-text-muted)] text-sm">↓</span>
+          <ArrowDown className="w-4 h-4 text-[var(--color-text-muted)] group-hover:translate-y-0.5 transition-transform" />
         </a>
       </motion.div>
 

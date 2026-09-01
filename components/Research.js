@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Reveal } from './Reveal'
+import { ChevronDown, ExternalLink, BookOpen, Award } from 'lucide-react'
 
 export default function Research() {
   const [showAbstract, setShowAbstract] = useState(false)
@@ -34,10 +35,12 @@ export default function Research() {
             <div className="flex-1">
               {/* Venue badge — prominent pill badges */}
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-[11px] font-medium px-3.5 py-1.5 rounded-full bg-[var(--color-primary)] text-white tracking-wider uppercase">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3.5 py-1.5 rounded-full bg-[var(--color-primary)] text-white tracking-wider uppercase">
+                  <Award className="w-3 h-3" />
                   IEEE Publication
                 </span>
-                <span className="text-[11px] font-medium px-3.5 py-1.5 rounded-full bg-[var(--color-card-bg-alt)] text-[var(--color-text-secondary)] border border-[var(--color-border)] tracking-wider uppercase">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3.5 py-1.5 rounded-full bg-[var(--color-card-bg-alt)] text-[var(--color-text-secondary)] border border-[var(--color-border)] tracking-wider uppercase">
+                  <BookOpen className="w-3 h-3" />
                   INDIACom 2026
                 </span>
               </div>
@@ -53,20 +56,12 @@ export default function Research() {
               {/* Abstract Toggle Button */}
               <button
                 onClick={() => setShowAbstract(!showAbstract)}
-                className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[var(--color-primary)] hover:text-[var(--color-brand-accent)] transition-colors mb-6 cursor-none focus:outline-none"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-[var(--color-primary)] hover:text-[var(--color-brand-accent)] transition-colors mb-6 cursor-none focus:outline-none"
               >
                 <span>{showAbstract ? 'Hide Abstract' : 'Read Abstract'}</span>
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  className={`transform transition-transform duration-300 ${showAbstract ? 'rotate-180' : ''}`}
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transform transition-transform duration-300 ${showAbstract ? 'rotate-180' : ''}`}
+                />
               </button>
 
               {/* Collapsible Abstract Content */}
@@ -86,7 +81,6 @@ export default function Research() {
                 )}
               </AnimatePresence>
 
-              {/* Action Buttons */}
               {/* Action Links */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-x-8 gap-y-3 mt-6 mb-6">
                 <div className="flex items-center gap-2 flex-wrap text-[14px]">
@@ -98,18 +92,7 @@ export default function Research() {
                     className="inline-flex items-center gap-1 text-[13.5px] text-[var(--color-primary)] hover:underline cursor-none w-fit font-sans"
                   >
                     <span className="truncate max-w-[280px] sm:max-w-none">https://ieeexplore.ieee.org/document/11525589</span>
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      className="shrink-0"
-                    >
-                      <line x1="7" y1="17" x2="17" y2="7" />
-                      <polyline points="7 7 17 7 17 17" />
-                    </svg>
+                    <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                   </a>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap text-[14px]">
@@ -121,18 +104,7 @@ export default function Research() {
                     className="inline-flex items-center gap-1 text-[13.5px] text-[var(--color-primary)] hover:underline cursor-none w-fit font-sans"
                   >
                     <span className="truncate max-w-[280px] sm:max-w-none">https://doi.org/10.23919/INDIACom70271.2026.11525589</span>
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      className="shrink-0"
-                    >
-                      <line x1="7" y1="17" x2="17" y2="7" />
-                      <polyline points="7 7 17 7 17 17" />
-                    </svg>
+                    <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                   </a>
                 </div>
               </div>

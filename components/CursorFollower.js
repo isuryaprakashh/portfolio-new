@@ -10,8 +10,8 @@ export default function CursorFollower() {
   const ringPos = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
-    // Don't run on touch devices
-    if (window.matchMedia('(pointer: coarse)').matches) return
+    // Don't run on touch devices or devices without fine pointer
+    if (window.matchMedia('(pointer: coarse), (hover: none)').matches) return
 
     const handleMouseMove = (e) => {
       mouse.current = { x: e.clientX, y: e.clientY }

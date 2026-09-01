@@ -43,9 +43,9 @@ export default function About() {
         {/* Highlight row — accent cards with left border */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
-            { label: 'Focus', value: 'AI & Systems', color: 'var(--color-primary)', icon: '⚡' },
-            { label: 'Approach', value: 'Build to Learn', color: 'var(--color-warm)', icon: '🔧' },
-            { label: 'Interest', value: 'Experiences', color: 'var(--color-sage)', icon: '✦' },
+            { label: 'Focus', value: 'AI & Systems', color: 'var(--color-primary)' },
+            { label: 'Approach', value: 'Build to Learn', color: 'var(--color-warm)' },
+            { label: 'Interest', value: 'Experiences', color: 'var(--color-sage)' },
           ].map((item, i) => (
             <Reveal key={item.label} delay={0.4 + i * 0.1}>
               <div
@@ -158,6 +158,9 @@ function TechIcon({ name, slug }) {
         alt={`${name} icon`}
         className="w-6 h-6 object-contain"
         loading="lazy"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none'
+        }}
       />
     </div>
   )
