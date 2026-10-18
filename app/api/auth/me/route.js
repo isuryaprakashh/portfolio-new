@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server';
+import { isAdmin } from '@/lib/auth';
 
 export async function GET(request) {
-  const token = request.cookies.get('admin_token');
-  
-  if (token && token.value === 'authenticated') {
+  if (isAdmin(request)) {
     return NextResponse.json({ isAuthenticated: true });
   }
   

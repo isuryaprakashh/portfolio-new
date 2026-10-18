@@ -1,8 +1,4 @@
 import './globals.css'
-import { SmoothScrollProvider } from '@/components/SmoothScroll'
-import Navbar from '@/components/Navbar'
-import CursorFollower from '@/components/CursorFollower'
-import SpotifyPlaying from '@/components/SpotifyPlaying'
 
 export const metadata = {
   title: 'Surya Prakash — Engineer, Explorer, Builder',
@@ -25,12 +21,7 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
       </head>
       <body suppressHydrationWarning>
-        <SmoothScrollProvider>
-          <CursorFollower />
-          <Navbar />
-          {children}
-          <SpotifyPlaying />
-        </SmoothScrollProvider>
+        {children}
       </body>
     </html>
   )

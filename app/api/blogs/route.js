@@ -1,6 +1,7 @@
 import connectToDatabase from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 import { NextResponse } from 'next/server';
+import { isAdmin } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,10 +20,9 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    // In a real app, you'd check for the admin cookie here
-    const cookieStore = request.cookies;
-    // Basic protection - we'll implement the actual cookie logic in the login route
-    
+    if (!isAdmin(request)) {
+      return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+    }
     await connectToDatabase();
     const body = await request.json();
     const blog = await Blog.create(body);

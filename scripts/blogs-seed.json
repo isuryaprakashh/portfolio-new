@@ -1,0 +1,46 @@
+[
+  {
+    "title": "From a project to a conference paper",
+    "slug": "project-to-paper",
+    "date": "2026 · 06",
+    "subtitle": "How a Deep Learning course project turned into my first IEEE publication.",
+    "excerpt": "What started as experimentation in deep learning ended up published at IEEE INDIACOM 2026.",
+    "tags": [
+      "Research",
+      "Deep Learning",
+      "Computer Vision"
+    ],
+    "content": "What started as experimentation in deep learning eventually evolved into published research presented at INDIACOM 2026. A journey from curiosity to contribution.\n\n## Where it began\n\nIt started as a project during my Deep Learning course. The question was simple: can a model look at a photo and understand *where* it was taken? A beach, a forest, a city street, a mountain.\n\n## The paper\n\n**Enhanced Visual Understanding Using Deep Learning Based on Scene Classification** was published by IEEE and presented at INDIACOM 2026 in New Delhi, India.\n\nThe work compares an Artificial Neural Network, a Convolutional Neural Network and a transfer learning approach built on ResNet-18. ResNet-18 came out on top, and to make the model usable, I wrapped it in a small Flask web app where anyone can upload an image and see what scene it predicts.\n\n## What I learned\n\n- A good course project is worth finishing properly. The extra effort is what turned it into a paper.\n- Transfer learning is a superpower when you don't have huge datasets or compute.\n- Writing research forces you to understand your own work much more deeply.\n\n## Thank you\n\nA huge thanks to Modepalli Kavitha mam, who guided me in the completion of this paper, and Dr. Yogesh Kumar Sharma sir, who helped in the publication process. A special mention to my sister, Veda Sai Priya Inukurthi, who helped me complete it.\n\n- [Read it on IEEE Xplore](https://ieeexplore.ieee.org/document/11525589)\n- [DOI: 10.23919/INDIACom70271.2026.11525589](https://doi.org/10.23919/INDIACom70271.2026.11525589)\n- [Code on GitHub](https://github.com/isuryaprakashh/SceneClassification)\n",
+    "readTime": "2 min read",
+    "coverImage": ""
+  },
+  {
+    "title": "Building with people",
+    "slug": "building-with-people",
+    "date": "2026 · 10",
+    "subtitle": "Hackathons, student communities, and why I learn best by building alongside others.",
+    "excerpt": "Hackathons, student communities, and collaborative projects, and why they shape how I learn.",
+    "tags": [
+      "Community",
+      "Hackathons",
+      "Learning"
+    ],
+    "content": "Some of the best ideas come from building with people. Hackathons, student communities, and collaborative projects have become a big part of how I learn and build.\n\n## Aprameya, the AI & Autonomous Systems Club\n\nI joined Aprameya, the AI & Autonomous Systems Club at KL University, as a member in July 2025, became a core member that September, and have been Director of Strategic Planning since January 2026.\n\nWe lead explorations in AI with a community of curious builders, organizing events and sharing knowledge along the way. I also helped build the club's own platform for managing operations, events and collaboration.\n\n## Hackathons\n\nBuilding under constraints, rapid prototyping, and discovering new approaches through competitive collaboration. ODINMAIL, an AI email assistant, came out of the OpenAI x NxtWave Hackathon. Nothing teaches you to scope ruthlessly like a deadline that's only hours away.\n\n## Collaborative projects\n\nWorking across disciplines, combining engineering, design, and product thinking in team environments. The projects I'm proudest of were never built alone.\n\n## Why it matters\n\nLearning alone is slow. Building with people means someone always knows the thing you don't, and you get to return the favour.\n",
+    "readTime": "1 min read",
+    "coverImage": ""
+  },
+  {
+    "title": "Ideas get clearer as you build",
+    "slug": "ideas-get-clearer",
+    "date": "2026 · 10",
+    "subtitle": "On starting before you feel ready.",
+    "excerpt": "On turning ideas into real products instead of waiting for them to be fully formed.",
+    "tags": [
+      "Notes",
+      "Building"
+    ],
+    "content": "> Ideas don't come out fully formed; they only become clearer as you work on them. You just have to get started.\n>\n> Mark Zuckerberg\n\nI enjoy building things that combine technology, systems, and experience. From full-stack applications to AI-driven projects and immersive interfaces, I like exploring ideas by turning them into real products.\n\n## Start before it's clear\n\nMost of my projects started as a vague \"what if\". Hirevexa began as a question about how hiring could be smarter. Asthetica began as \"what if an online store felt like walking through a gallery\". Neither idea was clear on day one. Both became clear because I started building.\n\n## Learning through building\n\nMost of what I learn comes through building, experimenting with projects, participating in hackathons, and collaborating with people around me through communities and events.\n\n## The takeaway\n\nIf you're waiting for an idea to feel fully formed, stop waiting. Open the editor and make the smallest version you can. It will teach you what the idea actually is.\n",
+    "readTime": "1 min read",
+    "coverImage": ""
+  }
+]
