@@ -1,0 +1,115 @@
+/* sp-os easter egg (components/pixel/egg.js). Scoped under .px; every class is prefixed egg-.
+   Surfaces reuse the nav pill's dark glass; motion reuses the site's easings. */
+.px .egg-layer{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  --egg-glass:rgba(22,23,26,.92);
+  --egg-ring:inset 0 0 0 1px rgba(255,255,255,.06);
+  --egg-text:#E6E7E9;--egg-muted:#9A9FA6;--egg-faint:#6A6F76;--egg-orange:#F2A23A;--egg-green:#2EA44F;--egg-red:#F0767A;
+  --egg-mono:var(--font-geist-mono,"Geist Mono"),ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-family:var(--sans);
+}
+
+/* the footer copy steps aside while the egg runs */
+.px .meadow .mf,.px .meadow .mcopy{transition:opacity .3s ease}
+.px .meadow.egg-on .mf,.px .meadow.egg-on .mcopy{opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s}
+@media (max-width:640px){.px .meadow.egg-armed .mf{opacity:.35}}
+
+/* click 1: a small dark-glass pill, like the nav */
+.px .egg-tip{
+  position:absolute;left:0;bottom:0;z-index:3;pointer-events:auto;cursor:var(--cursor-pointer,pointer);
+  display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100% - 24px);
+  padding:8px 15px 8px 12px;border-radius:999px;
+  background:var(--egg-glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.45),var(--egg-ring);
+  color:#EDEDED;font-size:13.5px;line-height:1.35;letter-spacing:-0.005em;white-space:nowrap;
+  animation:egg-rise .45s cubic-bezier(.2,.8,.2,1) both;
+}
+.px .egg-tip.egg-bye{animation:egg-out .22s ease forwards;pointer-events:none}
+@keyframes egg-rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes egg-out{to{opacity:0;transform:translateY(2px)}}
+.px .egg-who{display:inline-flex;align-items:center;gap:7px;flex:none;color:var(--egg-muted);font-size:12.5px;font-weight:500;padding-right:10px;box-shadow:1px 0 0 rgba(255,255,255,.12)}
+.px .egg-dot{flex:none;width:6px;height:6px;border-radius:50%;background:var(--egg-green);box-shadow:0 0 0 3px color-mix(in srgb,var(--egg-green) 24%,transparent)}
+.px .egg-msg{min-width:0}
+.px .egg-ch{position:relative;visibility:hidden}
+.px .egg-ch.on{visibility:visible}
+.px .egg-ch.egg-at::after{content:"";position:absolute;left:100%;top:.12em;width:1.5px;height:1.1em;margin-left:1px;background:var(--egg-muted);visibility:visible;animation:egg-blink 1.1s steps(1) infinite}
+.px .egg-tip.egg-done .egg-ch.egg-at::after{opacity:0;animation:none;transition:opacity .3s}
+@keyframes egg-blink{50%{opacity:0}}
+.px .egg-tail{position:absolute;left:var(--egg-tail,50%);top:100%;width:14px;height:7px;margin-left:-7px;background:var(--egg-glass);
+  clip-path:polygon(0 0,100% 0,50% 100%);clip-path:path("M0 0H14L8.2 5.9Q7 7.1 5.8 5.9Z")}
+.px .egg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.px .egg-warm{position:absolute;opacity:0;pointer-events:none;font-family:var(--egg-mono);font-size:1px}
+@media (max-width:380px){.px .egg-tip{white-space:normal;border-radius:16px}}
+
+/* a calm ping around the monitor, and a forgiving touch target */
+.px .egg-ping{position:absolute;z-index:1;border-radius:6px;pointer-events:none;box-shadow:0 0 0 1.5px rgba(255,255,255,.9);animation:egg-ping 1.8s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes egg-ping{0%{opacity:.9;transform:scale(1)}80%,100%{opacity:0;transform:scale(1.7)}}
+.px .egg-ping.egg-bye{animation:egg-out .22s ease forwards}
+.px .egg-hit{position:absolute;z-index:2;pointer-events:auto;cursor:var(--cursor-pointer,pointer);background:transparent;border-radius:10px;touch-action:manipulation}
+.px .egg-hit.egg-bye{display:none}
+
+/* sp-os: a terminal window in the nav's dark glass, popped up over the meadow */
+.px .egg-win{
+  position:absolute;inset:0;margin:auto;z-index:3;pointer-events:auto;
+  width:min(620px,calc(100% - 32px));height:min(440px,calc(100% - 48px));
+  display:flex;flex-direction:column;overflow:hidden;border-radius:16px;
+  background:var(--egg-glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.4),0 10px 30px -10px rgba(0,0,0,.35),var(--egg-ring);
+  color:var(--egg-text);transform-origin:50% 50%;cursor:var(--cursor-text,text);
+}
+.px .egg-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 14px 11px 16px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;cursor:default}
+.px .egg-brand{display:flex;align-items:center;gap:9px;color:#fff;font-weight:500;letter-spacing:-0.01em;min-width:0}
+.px .egg-brand i{flex:none;width:12px;height:12px;display:grid;grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px)}
+.px .egg-brand i b{background:var(--egg-orange)}
+.px .egg-brand i b:nth-child(even){background:transparent}
+.px .egg-guest{color:var(--egg-muted);font-weight:400}
+.px .egg-hint{color:var(--egg-faint);font-size:12px;white-space:nowrap}
+.px .egg-hint kbd{display:inline-block;margin-right:6px;padding:1px 7px;border-radius:6px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);color:#C9CACC;font:500 11.5px/1.5 var(--egg-mono)}
+.px .egg-coarse{display:none}
+@media (hover:none),(pointer:coarse){.px .egg-fine{display:none}.px .egg-coarse{display:inline}}
+.px .egg-scroll{
+  flex:1;min-height:0;overflow-x:hidden;overflow-y:auto;padding:14px 18px 16px;
+  font-family:var(--egg-mono);font-size:14px;line-height:1.65;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.16) transparent;
+}
+.px .egg-l{white-space:pre-wrap;overflow-wrap:anywhere;min-height:1.65em}
+.px .egg-cmd{margin-top:.6em}
+.px .egg-out>.egg-cmd:first-child{margin-top:0}
+.px .egg-rise{animation:egg-rise .32s cubic-bezier(.2,.8,.2,1) both}
+.px .egg-win .egg-faint{color:var(--egg-faint)}
+.px .egg-win .egg-dim{color:var(--egg-muted)}
+.px .egg-hl{color:#fff}
+.px .egg-ok{color:var(--egg-green)}
+.px .egg-win .egg-err{color:var(--egg-red)}
+.px .egg-win .egg-ai{display:inline-flex;align-items:center;gap:7px;margin-right:10px;color:var(--egg-muted)}
+.px .egg-win .egg-ai .egg-dot{width:6px;height:6px}
+.px .egg-k{display:inline-block;min-width:var(--w,9ch);color:var(--egg-muted)}
+.px .egg-ind{padding-left:2ch}
+.px .egg-item{margin-top:.5em}
+.px .egg-blk .egg-item:nth-child(2){margin-top:.2em}
+.px .egg-grid{display:grid;grid-template-columns:max-content 1fr;column-gap:3ch}
+.px .egg-line{display:flex;align-items:baseline;gap:1ch;margin-top:.6em}
+.px .egg-line[hidden]{display:none}
+.px .egg-ps1{white-space:nowrap}
+.px .egg-u,.px .egg-path{color:var(--egg-muted)}
+.px .egg-sym{color:var(--egg-orange)}
+.px .egg-field{position:relative;flex:1;min-width:0}
+.px .egg-mirror{display:block;white-space:pre-wrap;overflow-wrap:anywhere;color:#fff}
+.px .egg-cur{display:inline-block;min-width:1ch;color:#16171A;background:transparent;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
+.px .egg-focus .egg-cur{background:#EDEDED;box-shadow:none}
+.px .egg-focus .egg-cur.egg-blink{animation:egg-blink 1.1s steps(1) infinite .5s}
+.px .egg-in{
+  position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;outline:0;opacity:0;
+  background:transparent;color:transparent;font-size:16px;-webkit-appearance:none;appearance:none;
+  cursor:var(--cursor-text,text);
+}
+.px .egg-win ::selection{background:rgba(242,162,58,.35);color:#fff}
+
+@media (min-width:1024px){.px .egg-win{width:min(760px,calc(100% - 48px))}}
+@media (max-width:640px){
+  .px .egg-win{width:calc(100% - 24px);height:calc(100% - 32px);border-radius:14px}
+  .px .egg-scroll{font-size:13.5px;padding:12px 14px 14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .px .egg-tip,.px .egg-ping,.px .egg-rise,.px .egg-cur{animation:none!important}
+}

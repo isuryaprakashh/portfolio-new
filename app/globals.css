@@ -93,18 +93,6 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    body,
-    a,
-    button,
-    [role="button"],
-    input,
-    textarea,
-    select {
-      cursor: none;
-    }
-  }
-
   ::selection {
     background: rgba(99, 102, 241, 0.12);
     color: var(--color-deep-ink);
@@ -825,20 +813,7 @@ a.contact-reach-card:hover {
     font-size: 32px;
   }
 
-  /* Hide custom cursor on mobile/touch */
-  body {
-    cursor: auto;
-  }
-
-  a,
-  button,
-  [role="button"],
-  input,
-  textarea,
-  select {
-    cursor: auto;
-  }
-
+  /* Hide the legacy cursor follower on small screens */
   .cursor-dot,
   .cursor-ring {
     display: none !important;
@@ -1366,4 +1341,57 @@ a.contact-reach-card:hover {
 .blog-card-action-btn:hover {
   background: var(--color-card-bg-alt);
   color: var(--color-deep-ink);
+}
+
+/* =========================================================
+   CURSORS (single system for every page)
+   Light mode keeps the visitor's own OS pointers. Dark mode (AMOLED #000)
+   swaps in outlined pointers from /public/cursors so a black OS cursor
+   stays visible. Components opt in with var(--cursor-pointer, pointer),
+   var(--cursor-text, text) or var(--cursor-default, auto).
+   grab / grabbing / not-allowed / disabled stay native on purpose.
+   URLs are root-absolute: relative url() inside a custom property
+   resolves against the page, not this file.
+   ========================================================= */
+:root {
+  --cursor-default: auto;
+  --cursor-pointer: pointer;
+  --cursor-text: text;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cursor-default: url("/cursors/arrow.svg") 4 3, auto;
+    --cursor-pointer: url("/cursors/pointer.svg") 12 4, pointer;
+    --cursor-text: url("/cursors/text.svg") 16 16, text;
+  }
+}
+
+html {
+  cursor: var(--cursor-default);
+}
+
+a[href],
+button:not(:disabled),
+input:is([type="button"], [type="submit"], [type="reset"]):not(:disabled),
+[role="button"],
+label[for],
+summary,
+select:not(:disabled) {
+  cursor: var(--cursor-pointer);
+}
+
+input:not([type="button"], [type="submit"], [type="reset"], [type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="image"]):not(:disabled),
+textarea:not(:disabled),
+[contenteditable]:not([contenteditable="false"]) {
+  cursor: var(--cursor-text);
+}
+
+/* Legacy /admin chrome: CursorFollower paints its own dot + ring on wide,
+   fine-pointer screens, so hide the native pointer only there. */
+@media (hover: hover) and (pointer: fine) and (min-width: 641px) {
+  body:has(.cursor-dot),
+  body:has(.cursor-dot) :is(a, button, [role="button"], input, textarea, select) {
+    cursor: none;
+  }
 }

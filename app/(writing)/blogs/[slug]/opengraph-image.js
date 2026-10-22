@@ -1,102 +1,97 @@
-import { ImageResponse } from 'next/og';
-import connectToDatabase from '@/lib/mongodb';
-import Blog from '@/models/Blog';
+import { ImageResponse } from 'next/og'
+import { getOgPost, parseDataUrl } from '@/lib/blogs'
+import { SITE_URL } from '@/components/blog/utils'
 
-export const alt = 'Surya Prakash Portfolio - Blog Post';
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
+export const alt = 'Surya Prakash — Writing'
+export const size = { width: 1200, height: 630 }
+export const contentType = 'image/png'
+// Cached like the page; edits invalidate it via revalidatePath('/(writing)/blogs/[slug]', 'layout').
+export const revalidate = 3600
+
+const C = { bg: '#FAFAF9', ink: '#1F2328', muted: '#6B7078', faint: '#A3A7AD', dots: '#CDD0D4', chip: '#F0F0EE', pill: '#16171A' }
+
+const clip = (s, n) => {
+  const t = String(s || '').trim()
+  return t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t
+}
+
+// Satori (next/og) can only embed PNG, JPEG and GIF. WebP/AVIF covers are skipped: the card stays text-only.
+function embeddable(buf) {
+  if (!buf || buf.length < 4 || buf.length > 5_000_000) return false
+  const png = buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47
+  const jpg = buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff
+  const gif = buf[0] === 0x47 && buf[1] === 0x49 && buf[2] === 0x46
+  return png || jpg || gif
+}
+
+async function loadCover(cover) {
+  try {
+    let buf = null
+    if (cover.startsWith('data:')) {
+      buf = parseDataUrl(cover)?.bytes || null
+    } else if (/^https?:\/\//i.test(cover) || (cover.startsWith('/') && !cover.startsWith('/api/'))) {
+      const res = await fetch(cover.startsWith('/') ? `${SITE_URL}${cover}` : cover, { signal: AbortSignal.timeout(4000) })
+      if (res.ok) buf = Buffer.from(await res.arrayBuffer())
+    }
+    if (!embeddable(buf)) return null
+    return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)
+  } catch {
+    return null
+  }
+}
 
 export default async function Image({ params }) {
-  // In Next.js 16+, params is a Promise
-  const { slug } = await params;
-  
-  await connectToDatabase();
-  const blog = await Blog.findOne({ slug });
+  const { slug } = await params
+  let post = null
+  try {
+    post = await getOgPost(slug)
+  } catch {}
 
-  // Fallback title if blog not found
-  const title = blog ? blog.title : 'Blog Post Not Found';
-  const date = blog ? blog.date : 'Unknown Date';
-  const tags = blog && blog.tags ? blog.tags : [];
+  const title = clip(post?.title || 'Writing', 110)
+  const sub = clip(post?.subtitle || post?.excerpt || 'Notes on systems, experiments, AI, and things I’m exploring.', 150)
+  const meta = [post?.date, post?.readTime].filter(Boolean).join(' · ')
+  const tags = (post?.tags || []).slice(0, 3)
+  const cover = post?.coverImage ? await loadCover(post.coverImage) : null
+  const titleSize = title.length > 70 ? 50 : title.length > 40 ? 60 : 72
 
   return new ImageResponse(
     (
-      <div
-        style={{
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          backgroundColor: '#f5f5f7', // Apple-esque soft grey background
-          padding: '80px',
-          fontFamily: 'sans-serif',
-        }}
-      >
-        {/* Top Section */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <p
-            style={{
-              color: '#86868b', // Apple muted grey
-              fontSize: 28,
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em',
-              margin: 0,
-              fontWeight: 500,
-            }}
-          >
-            Surya Prakash / Writings
-          </p>
-          <h1
-            style={{
-              color: '#1d1d1f', // Apple dark grey/black
-              fontSize: 76,
-              fontWeight: 600,
-              margin: 0,
-              lineHeight: 1.1,
-              maxWidth: '960px',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            {title}
-          </h1>
+      <div style={{ width: '100%', height: '100%', display: 'flex', background: C.bg, color: C.ink, padding: 64 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div style={{ display: 'flex', padding: '10px 22px', borderRadius: 999, background: C.pill, color: '#fff', fontSize: 26 }}>
+              Surya Prakash
+            </div>
+            <div style={{ display: 'flex', fontSize: 26, color: C.muted }}>Writing</div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', fontSize: cover ? titleSize - 8 : titleSize, lineHeight: 1.12, letterSpacing: '-0.03em', color: C.ink }}>
+              {title}
+            </div>
+            <div style={{ display: 'flex', marginTop: 22, fontSize: cover ? 26 : 30, lineHeight: 1.4, color: C.muted }}>{sub}</div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 24, borderTop: `2px dashed ${C.dots}`, fontSize: 24, color: C.muted }}>
+            {meta && <div style={{ display: 'flex' }}>{meta}</div>}
+            {tags.map((t) => (
+              <div key={t} style={{ display: 'flex', padding: '6px 16px', borderRadius: 999, background: C.chip, fontSize: 20 }}>{t}</div>
+            ))}
+            <div style={{ display: 'flex', marginLeft: 'auto', color: C.faint }}>suryaprakash.me</div>
+          </div>
         </div>
 
-        {/* Bottom Section */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <span style={{ color: '#86868b', fontSize: 32, fontWeight: 400 }}>{date}</span>
-            {blog && blog.views !== undefined && (
-              <>
-                <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#d2d2d7' }}></span>
-                <span style={{ color: '#86868b', fontSize: 32, fontWeight: 400 }}>{blog.views} views</span>
-              </>
-            )}
-          </div>
-          
-          <div style={{ display: 'flex', gap: '12px' }}>
-            {tags.slice(0, 3).map((tag, index) => (
-              <span
-                key={index}
-                style={{
-                  color: '#1d1d1f',
-                  fontSize: 24,
-                  padding: '8px 24px',
-                  border: '2px solid #d2d2d7',
-                  borderRadius: '999px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  fontWeight: 500,
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
+        {cover && (
+          // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+          <img
+            src={cover}
+            width={400}
+            height={502}
+            style={{ marginLeft: 48, width: 400, height: 502, objectFit: 'cover', borderRadius: 24, border: `1px solid ${C.dots}` }}
+          />
+        )}
       </div>
     ),
-    {
-      ...size,
-    }
-  );
+    { ...size }
+  )
 }

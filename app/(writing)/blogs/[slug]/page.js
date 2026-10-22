@@ -1,93 +1,109 @@
-import connectToDatabase from '@/lib/mongodb'
-import Blog from '@/models/Blog'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { getAllSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blogs'
+import { readTime } from '@/components/blog/utils'
 import BlogMarkdown from '@/components/blog/BlogMarkdown'
 import BlogShare from '@/components/blog/BlogShare'
 import BlogProgress from '@/components/blog/BlogProgress'
+import ViewBeacon from '@/components/blog/ViewBeacon'
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params
-  await connectToDatabase()
-  const blog = await Blog.findOne({ slug })
-  if (!blog) return { title: 'Not Found' }
-  const description = blog.subtitle || blog.excerpt
-  return {
-    title: `${blog.title} — Surya Prakash`,
-    description,
-    openGraph: { title: blog.title, description, type: 'article', url: `/blogs/${blog.slug}`, ...(blog.coverImage && { images: [{ url: blog.coverImage }] }) },
-    twitter: { card: blog.coverImage ? 'summary_large_image' : 'summary', title: blog.title, description, ...(blog.coverImage && { images: [blog.coverImage] }) },
+// ISR: prerendered at build, regenerated at most every 5 min and right after an edit
+// (revalidatePath in /api/blogs). The view count shown can lag by up to one period.
+export const revalidate = 300
+
+export async function generateStaticParams() {
+  try {
+    return (await getAllSlugs()).map((slug) => ({ slug }))
+  } catch (err) {
+    // DB unreachable at build: prerender nothing; every post renders (and is cached) on first visit.
+    console.warn('[blogs] generateStaticParams: database unreachable, posts will render on demand.', err?.message)
+    return []
   }
 }
 
-function readTime(text) {
-  const words = String(text || '').trim().split(/\s+/).filter(Boolean).length
-  return `${Math.max(1, Math.ceil(words / 200))} min read`
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const post = await getPostBySlug(slug)
+  if (!post) return { title: 'Not found' }
+  const description = post.subtitle || post.excerpt
+  const url = `/blogs/${post.slug}`
+  // The title template (blogs/layout.js) adds " — Surya Prakash". og:image / twitter:image come from
+  // ./opengraph-image.js (never the stored cover data URL); twitter title/description inherit from openGraph.
+  return {
+    title: post.title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description,
+      url,
+      siteName: 'Surya Prakash',
+      authors: ['Surya Prakash'],
+      publishedTime: post.publishedAt,
+      modifiedTime: post.modifiedAt,
+      tags: post.tags,
+    },
+    twitter: { card: 'summary_large_image' },
+  }
 }
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params
-  await connectToDatabase()
-
-  // live view counter
-  const blog = await Blog.findOneAndUpdate({ slug }, { $inc: { views: 1 } }, { returnDocument: 'after' })
-  if (!blog) notFound()
-
-  let related = []
-  if (blog.tags?.length) {
-    related = await Blog.find({ _id: { $ne: blog._id }, tags: { $in: blog.tags } }).sort({ createdAt: -1 }).limit(3).select('title slug excerpt date')
-  }
-  if (related.length < 3) {
-    const more = await Blog.find({ _id: { $ne: blog._id, $nin: related.map((p) => p._id) } }).sort({ createdAt: -1 }).limit(3 - related.length).select('title slug excerpt date')
-    related = [...related, ...more]
-  }
+  const post = await getPostBySlug(slug)
+  if (!post) notFound()
+  const related = await getRelatedPosts(post).catch(() => [])
 
   return (
     <>
       <BlogProgress />
+      <ViewBeacon id={post._id} />
       <main className="pb-main">
         <article className="pb-wrap pb-art">
-          <a className="pb-back" href="/blogs">
+          <Link className="pb-back" href="/blogs">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
             Writing
-          </a>
-          <h1>{blog.title}</h1>
-          {blog.subtitle && <p className="pb-sub">{blog.subtitle}</p>}
+          </Link>
+          <h1>{post.title}</h1>
+          {post.subtitle && <p className="pb-sub">{post.subtitle}</p>}
 
           <div className="pb-artmeta">
-            <span>{blog.date}</span>
-            <span>{readTime(blog.content)}</span>
+            <span>{post.date}</span>
+            <span>{readTime(post.content)}</span>
             <span className="vw">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12z" /><circle cx="12" cy="12" r="3" /></svg>
-              {blog.views} views
+              {post.views} {post.views === 1 ? 'view' : 'views'}
             </span>
-            <BlogShare title={blog.title} slug={blog.slug} />
+            <BlogShare title={post.title} slug={post.slug} />
           </div>
 
-          {blog.tags?.length > 0 && (
-            <div className="pb-chips" style={{ marginTop: 14 }}>
-              {blog.tags.map((t) => <span key={t}>{t}</span>)}
+          {post.tags.length > 0 && (
+            <div className="pb-chips pb-art-tags">
+              {post.tags.map((t) => <span key={t}>{t}</span>)}
             </div>
           )}
 
-          {blog.coverImage && (
-            <div className="pb-cover"><img src={blog.coverImage} alt="" /></div>
+          {post.cover && (
+            <div className="pb-cover">
+              <img src={post.cover} alt="" width={1600} height={900} decoding="async" fetchPriority="high" />
+            </div>
           )}
 
-          <BlogMarkdown content={blog.content} />
+          <BlogMarkdown content={post.content} />
 
           {related.length > 0 && (
             <section className="pb-related" aria-labelledby="more-writing">
               <h2 id="more-writing">More writing</h2>
               {related.map((r) => (
-                <a key={r._id.toString()} className="pb-post" href={`/blogs/${r.slug}`}>
+                <Link key={r._id} className="pb-post" href={`/blogs/${r.slug}`}>
                   <span className="pb-line"><b>{r.title}</b><i className="pb-dl" /><span className="pb-meta">{r.date}</span></span>
                   <p>{r.excerpt}</p>
-                </a>
+                </Link>
               ))}
             </section>
           )}
 
-          <p className="pb-thanks">Thanks for reading. <a href="/blogs">All writing</a></p>
+          <p className="pb-thanks">Thanks for reading. <Link href="/blogs">All writing</Link></p>
         </article>
       </main>
     </>

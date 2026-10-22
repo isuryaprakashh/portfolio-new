@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Pointing hand. Hotspot: 12 4 (index fingertip). -->
+  <path d="M10.44 5.56A1.56 1.56 0 0 1 13.56 5.56V11.8A1.4 1.4 0 0 1 16.37 11.8V12.58A1.4 1.4 0 0 1 19.18 12.58V13.67A1.25 1.25 0 0 1 21.67 13.67V18.43C21.67 21 20.89 23.11 19.33 23.11H12.78L5.39 15.71A1.4 1.4 0 0 1 7.37 13.73L10.44 16.79Z" fill="#111318" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round" paint-order="stroke"/>
+  <path d="M13.56 11.8V14.6M16.37 12.58V15.2M19.18 13.67V16" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+</svg>

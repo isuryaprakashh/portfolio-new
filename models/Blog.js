@@ -22,11 +22,18 @@ const BlogSchema = new mongoose.Schema({
   content: {
     type: String,
     required: [true, 'Please provide the blog content'],
+    // Also runs on updates (runValidators), so an edit can never blank a post.
+    validate: {
+      validator: (v) => typeof v === 'string' && v.trim().length > 0,
+      message: 'Blog content cannot be empty',
+    },
   },
   readTime: {
     type: String,
     required: [true, 'Please provide the read time'],
   },
+  // An http(s) URL, a /path, or (legacy + admin uploads) a base64 data URL.
+  // Lists never read the base64; it is served as bytes by /api/blogs/[id]/cover.
   coverImage: {
     type: String,
     default: '',

@@ -1,15 +1,17 @@
+import Link from 'next/link'
+
 export default function BlogNav() {
   return (
     <nav className="pb-nav" aria-label="Main">
-      <a className="brand" href="/" aria-label="Surya Prakash, home">
+      <Link className="brand" href="/" aria-label="Surya Prakash, home">
         <span className="bf">Surya Prakash</span><span className="bs">SP</span>
-      </a>
-      <a className="nl opt" href="/#h-work">Work</a>
-      <a className="nl opt" href="/#h-research">Research</a>
-      <a className="nl opt" href="/#h-projects">Projects</a>
-      <a className="nl on" href="/blogs">Blog</a>
+      </Link>
+      {/* <Link className="nl opt" href="/#h-work">Work</Link> */}
+      <Link className="nl opt" href="/#h-research">Research</Link>
+      <Link className="nl opt" href="/#h-projects">Projects</Link>
+      <Link className="nl on" href="/blogs">Blog</Link>
       <a className="np1" href="/SURYA-RESUME.pdf" target="_blank" rel="noopener">Resume</a>
-      <a className="np2" href="/#h-contact">Contact</a>
+      <Link className="np2" href="/#h-contact">Contact</Link>
     </nav>
   )
 }

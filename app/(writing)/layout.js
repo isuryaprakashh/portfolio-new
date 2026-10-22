@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import './blog.css'
 import BlogNav from '@/components/blog/BlogNav'
 
@@ -11,7 +12,7 @@ export default function WritingLayout({ children }) {
         <div className="pb-wrap pb-footrow">
           <span>© 2026 Surya Prakash</span>
           <nav aria-label="Footer">
-            <a href="/">Home</a>
+            <Link href="/">Home</Link>
             <a href="https://github.com/isuryaprakashh" target="_blank" rel="noopener">GitHub</a>
             <a href="https://linkedin.com/in/isuryaprakashh" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://x.com/isuryaprakashh" target="_blank" rel="noopener">X</a>

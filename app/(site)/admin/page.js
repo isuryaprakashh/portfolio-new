@@ -28,7 +28,8 @@ export default function AdminPage() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch('/api/blogs')
+      // Full documents (incl. content): the default list omits content, and editing from it would wipe posts.
+      const res = await fetch('/api/blogs?full=true', { cache: 'no-store' })
       const data = await res.json()
       if (data.success) {
         setBlogs(data.data)
@@ -41,7 +42,7 @@ export default function AdminPage() {
   }
 
   const handleLogout = async () => {
-    await fetch('/api/auth/login')
+    await fetch('/api/auth/logout', { method: 'POST' })
     router.push('/')
   }
 
